@@ -1,70 +1,971 @@
 [
   {
-    "id": "20260215_145626",
+    "id": "20260402_074658",
     "name": "Mohit Bhatt",
     "email": "mohitbhatt2030@gmail.com",
     "qualification": "Diploma in IT",
-    "company": "TCS",
-    "resume": "20260215_145626_resume (1).pdf",
+    "company": "Amazon",
+    "resume": "20260402_074658_mohit new resume .pdf",
     "skills_found": [
+      "python",
+      "css",
+      "git",
+      "javascript",
+      "node",
       "java",
-      "tf",
-      "python"
+      "html"
     ],
     "matched_skills": [
       "java",
       "python"
     ],
     "missing_skills": [
-      "sql",
-      "spring boot",
+      "c++",
       "aws",
+      "distributed systems",
       "dsa",
-      "oops"
+      "system design"
     ],
-    "score": 22.22,
-    "status": "Rejected",
-    "applied_date": "2026-02-15 14:56:26",
-    "reviewed_date": "2026-02-15 14:57:11"
+    "score": 29.29,
+    "skill_score": 28.57,
+    "exp_score": 0,
+    "projects_score": 100,
+    "cert_score": 0.0,
+    "exp_years": 0,
+    "projects_count": 4,
+    "cert_count": 0,
+    "status": "Shortlisted",
+    "applied_date": "2026-04-02 07:46:58"
   },
   {
-    "id": "20260217_125003",
-    "name": "Mohit Bhatt",
+    "id": "20260402_095703",
+    "name": "Mohit  ",
+    "email": "mohitbhatt2030@gmail.com",
+    "qualification": "Diploma in CS",
+    "company": "Amazon",
+    "resume": "20260402_095703_mohit new resume .pdf",
+    "skills_found": [
+      "node",
+      "java",
+      "python",
+      "css",
+      "javascript",
+      "git",
+      "html"
+    ],
+    "matched_skills": [
+      "java",
+      "python"
+    ],
+    "missing_skills": [
+      "c++",
+      "aws",
+      "distributed systems",
+      "dsa",
+      "system design"
+    ],
+    "score": 29.29,
+    "skill_score": 28.57,
+    "exp_score": 0,
+    "projects_score": 100,
+    "cert_score": 0.0,
+    "exp_years": 0,
+    "projects_count": 4,
+    "cert_count": 0,
+    "status": "Pending",
+    "applied_date": "2026-04-02 09:57:03"
+  },
+  {
+    "id": "20260402_162229",
+    "name": "manish",
     "email": "mohitbhatt2030@gmail.com",
     "qualification": "Diploma in IT",
+    "company": "Apple",
+    "resume": "20260402_162229_mohit new resume .pdf",
+    "skills_found": [
+      "html",
+      "python",
+      "css",
+      "git",
+      "node",
+      "javascript",
+      "java"
+    ],
+    "matched_skills": [
+      "python"
+    ],
+    "missing_skills": [
+      "swift",
+      "c++",
+      "ios",
+      "macos",
+      "system design"
+    ],
+    "score": 22.14,
+    "skill_score": 14.29,
+    "exp_score": 0,
+    "projects_score": 100,
+    "cert_score": 0.0,
+    "exp_years": 0,
+    "projects_count": 4,
+    "cert_count": 0,
+    "status": "Shortlisted",
+    "applied_date": "2026-04-02 16:22:30"
+  },
+  {
+    "id": "20260402_163055",
+    "name": "Mohit ",
+    "email": "mohitbhatt2030@gmail.com",
+    "qualification": "Diploma in IT",
+    "company": "Infosys",
+    "resume": "20260402_163055_mohit new resume .pdf",
+    "skills_found": [
+      "css",
+      "git",
+      "node",
+      "html",
+      "python",
+      "javascript",
+      "java"
+    ],
+    "matched_skills": [
+      "python",
+      "java"
+    ],
+    "missing_skills": [
+      "spring",
+      "aws",
+      "azure",
+      "sql",
+      "dsa"
+    ],
+    "score": 29.29,
+    "skill_score": 28.57,
+    "exp_score": 0,
+    "projects_score": 100,
+    "cert_score": 0.0,
+    "exp_years": 0,
+    "projects_count": 4,
+    "cert_count": 0,
+    "status": "Shortlisted",
+    "applied_date": "2026-04-02 16:30:55"
+  },
+  {
+    "id": "20260402_202209",
+    "name": "karan joshi ",
+    "email": "karanrockkj5@gmail.com",
+    "qualification": "Diploma in IT",
+    "company": "Amazon",
+    "resume": "20260402_202209_Karan Joshi.pdf",
+    "skills_found": [
+      "javascript",
+      "c++",
+      "sql",
+      "html",
+      "python",
+      "react",
+      "css",
+      "java"
+    ],
+    "matched_skills": [
+      "java",
+      "c++",
+      "python"
+    ],
+    "missing_skills": [
+      "aws",
+      "distributed systems",
+      "dsa",
+      "system design"
+    ],
+    "score": 36.43,
+    "skill_score": 42.86,
+    "exp_score": 0,
+    "projects_score": 100,
+    "cert_score": 0.0,
+    "exp_years": 0,
+    "projects_count": 4,
+    "cert_count": 0,
+    "status": "Shortlisted",
+    "applied_date": "2026-04-02 20:22:09"
+  },
+  {
+    "id": "20260402_203506",
+    "name": "Deepika jeena",
+    "email": "jeenandra.2003@gmail.com",
+    "qualification": "Diploma in IT",
+    "company": "Microsoft",
+    "resume": "20260402_203506_Black and White Minimalist Professional Resume A4 (9).pdf",
+    "skills_found": [
+      "javascript",
+      "html",
+      "python",
+      "css",
+      "java"
+    ],
+    "matched_skills": [
+      "python"
+    ],
+    "missing_skills": [
+      "c#",
+      "azure",
+      "sql",
+      "power bi",
+      ".net core"
+    ],
+    "score": 21.25,
+    "skill_score": 12.5,
+    "exp_score": 0,
+    "projects_score": 100,
+    "cert_score": 0.0,
+    "exp_years": 0,
+    "projects_count": 5,
+    "cert_count": 0,
+    "status": "Shortlisted",
+    "applied_date": "2026-04-02 20:35:07"
+  },
+  {
+    "id": "20260402_203632",
+    "name": "bhatt",
+    "email": "bhattji6399@gmail.com",
+    "qualification": "Diploma in IT",
+    "company": "Microsoft",
+    "resume": "20260402_203632_Black and White Minimalist Professional Resume A4 (9).pdf",
+    "skills_found": [
+      "javascript",
+      "html",
+      "python",
+      "css",
+      "java"
+    ],
+    "matched_skills": [
+      "python"
+    ],
+    "missing_skills": [
+      "c#",
+      "azure",
+      "sql",
+      "power bi",
+      ".net core"
+    ],
+    "score": 21.25,
+    "skill_score": 12.5,
+    "exp_score": 0,
+    "projects_score": 100,
+    "cert_score": 0.0,
+    "exp_years": 0,
+    "projects_count": 5,
+    "cert_count": 0,
+    "status": "Shortlisted",
+    "applied_date": "2026-04-02 20:36:32"
+  },
+  {
+    "id": "20260402_205353",
+    "name": "Yogi Bisht",
+    "email": "yogeshbishtuk04@gmail.com",
+    "qualification": "Diploma in IT",
+    "company": "Microsoft",
+    "resume": "20260402_205353_Yogi Vincular Resume .pdf",
+    "skills_found": [
+      "javascript",
+      "html",
+      "git",
+      "css",
+      "java"
+    ],
+    "matched_skills": [],
+    "missing_skills": [
+      "c#",
+      "python",
+      "azure",
+      "sql",
+      "power bi"
+    ],
+    "score": 15.0,
+    "skill_score": 0.0,
+    "exp_score": 0,
+    "projects_score": 100,
+    "cert_score": 0.0,
+    "exp_years": 0,
+    "projects_count": 5,
+    "cert_count": 0,
+    "status": "Shortlisted",
+    "applied_date": "2026-04-02 20:53:54"
+  },
+  {
+    "id": "20260402_205720",
+    "name": "pankaj tripathi",
+    "email": "pt370812@gmail.com",
+    "qualification": "Diploma in IT",
+    "company": "Amazon",
+    "resume": "20260402_205720_it resume 11.pdf",
+    "skills_found": [
+      "css",
+      "html",
+      "python"
+    ],
+    "matched_skills": [
+      "python"
+    ],
+    "missing_skills": [
+      "java",
+      "c++",
+      "aws",
+      "distributed systems",
+      "dsa"
+    ],
+    "score": 22.14,
+    "skill_score": 14.29,
+    "exp_score": 0,
+    "projects_score": 100.0,
+    "cert_score": 0.0,
+    "exp_years": 0,
+    "projects_count": 3,
+    "cert_count": 0,
+    "status": "Shortlisted",
+    "applied_date": "2026-04-02 20:57:21"
+  },
+  {
+    "id": "20260402_214309",
+    "name": "Babita gaurh",
+    "email": "gaurhbabita@gmail.com",
+    "qualification": "Diploma in IT",
+    "company": "Meta",
+    "resume": "20260402_214309_gaurhCV.pdf",
+    "skills_found": [
+      "c++",
+      "sql",
+      "html",
+      "python",
+      "css"
+    ],
+    "matched_skills": [
+      "python",
+      "c++"
+    ],
+    "missing_skills": [
+      "react",
+      "pytorch",
+      "system design",
+      "dsa"
+    ],
+    "score": 16.67,
+    "skill_score": 33.33,
+    "exp_score": 0,
+    "projects_score": 0.0,
+    "cert_score": 0.0,
+    "exp_years": 0,
+    "projects_count": 0,
+    "cert_count": 0,
+    "status": "Shortlisted",
+    "applied_date": "2026-04-02 21:43:09"
+  },
+  {
+    "id": "20260403_061336",
+    "name": "Dhumka",
+    "email": "bhanudumka31@gmail.com",
+    "qualification": "Diploma in IT",
+    "company": "Adobe",
+    "resume": "20260403_061336_resume (4).pdf",
+    "skills_found": [
+      "python"
+    ],
+    "matched_skills": [
+      "python"
+    ],
+    "missing_skills": [
+      "javascript",
+      "c++",
+      "react",
+      "node.js",
+      "cloud"
+    ],
+    "score": 7.14,
+    "skill_score": 14.29,
+    "exp_score": 0,
+    "projects_score": 0.0,
+    "cert_score": 0.0,
+    "exp_years": 0,
+    "projects_count": 0,
+    "cert_count": 0,
+    "status": "Rejected",
+    "applied_date": "2026-04-03 06:13:36"
+  },
+  {
+    "id": "20260403_150906",
+    "name": "Mohit  ",
+    "email": "mohitbhatt2030@gmail.com",
+    "qualification": "Diploma in IT",
+    "company": "Thoughtworks",
+    "resume": "20260403_150906_mohit new resume .pdf",
+    "skills_found": [
+      "python",
+      "node",
+      "git",
+      "java",
+      "css",
+      "javascript",
+      "html"
+    ],
+    "matched_skills": [
+      "java",
+      "python"
+    ],
+    "missing_skills": [
+      "c#",
+      "tdd",
+      "ci/cd",
+      "docker",
+      "microservices"
+    ],
+    "score": 29.29,
+    "skill_score": 28.57,
+    "exp_score": 0,
+    "projects_score": 100,
+    "cert_score": 0.0,
+    "exp_years": 0,
+    "projects_count": 4,
+    "cert_count": 0,
+    "status": "Pending",
+    "applied_date": "2026-04-03 15:09:06"
+  },
+  {
+    "id": "20260403_160013",
+    "name": "jittu ",
+    "email": "jitenderjittu151@gmail.com",
+    "qualification": "Diploma in IT",
+    "company": "Infosys",
+    "resume": "20260403_160013_resume-1.pdf",
+    "skills_found": [],
+    "matched_skills": [],
+    "missing_skills": [
+      "python",
+      "java",
+      "spring",
+      "aws",
+      "azure"
+    ],
+    "score": 0.0,
+    "skill_score": 0.0,
+    "exp_score": 0,
+    "projects_score": 0.0,
+    "cert_score": 0.0,
+    "exp_years": 0,
+    "projects_count": 0,
+    "cert_count": 0,
+    "status": "Rejected",
+    "applied_date": "2026-04-03 16:00:13"
+  },
+  {
+    "id": "20260403_161252",
+    "name": "manish joshi ",
+    "email": "manishjoshi.ai2007@gmail.com",
+    "qualification": "Diploma in IT",
+    "company": "Meta",
+    "resume": "20260403_161252_resume (1) (1).pdf",
+    "skills_found": [
+      "python"
+    ],
+    "matched_skills": [
+      "python"
+    ],
+    "missing_skills": [
+      "c++",
+      "react",
+      "pytorch",
+      "system design",
+      "dsa"
+    ],
+    "score": 23.33,
+    "skill_score": 16.67,
+    "exp_score": 0,
+    "projects_score": 100,
+    "cert_score": 0.0,
+    "exp_years": 0,
+    "projects_count": 4,
+    "cert_count": 0,
+    "status": "Shortlisted",
+    "applied_date": "2026-04-03 16:12:52"
+  },
+  {
+    "id": "20260403_163712",
+    "name": " Bhatt_ji",
+    "email": "mohitbhatt2030@gmail.com",
+    "qualification": "Diploma in CS",
     "company": "TCS",
-    "resume": "20260217_125003_resume (1).pdf",
+    "resume": "20260403_163712_mohit new resume .pdf",
     "skills_found": [
       "python",
       "java",
-      "tf"
+      "node",
+      "html",
+      "css",
+      "javascript"
     ],
     "matched_skills": [
       "java",
       "python"
     ],
+    "score": 66.67,
+    "status": "Pending",
+    "applied_date": "2026-04-03 16:37:13"
+  },
+  {
+    "id": "20260403_163717",
+    "name": " Bhatt_ji",
+    "email": "mohitbhatt2030@gmail.com",
+    "qualification": "Diploma in CS",
+    "company": "TCS",
+    "resume": "20260403_163717_mohit new resume .pdf",
+    "skills_found": [
+      "python",
+      "java",
+      "node",
+      "html",
+      "css",
+      "javascript"
+    ],
+    "matched_skills": [
+      "java",
+      "python"
+    ],
+    "score": 66.67,
+    "status": "Pending",
+    "applied_date": "2026-04-03 16:37:17"
+  },
+  {
+    "id": "20260404_053404",
+    "name": "mayank sing",
+    "email": "ms0490906@gmail.com",
+    "qualification": "Diploma in IT",
+    "company": "Meta",
+    "resume": "20260404_053404_CV_2026012218164150.pdf",
+    "skills_found": [
+      "python",
+      "c++",
+      "git"
+    ],
+    "matched_skills": [
+      "python",
+      "c++"
+    ],
     "missing_skills": [
+      "react",
+      "pytorch",
+      "system design",
+      "dsa"
+    ],
+    "score": 16.67,
+    "skill_score": 33.33,
+    "exp_score": 0,
+    "projects_score": 0.0,
+    "cert_score": 0.0,
+    "exp_years": 0,
+    "projects_count": 0,
+    "cert_count": 0,
+    "status": "Pending",
+    "applied_date": "2026-04-04 05:34:04"
+  },
+  {
+    "id": "20260404_053638",
+    "name": "pooja Dhami",
+    "email": "poojadhami255@gmail.com",
+    "qualification": "Diploma in IT",
+    "company": "TCS",
+    "resume": "20260404_053638_resume (2).pdf",
+    "skills_found": [
+      "javascript",
+      "html",
+      "css",
+      "java"
+    ],
+    "matched_skills": [
+      "java"
+    ],
+    "missing_skills": [
+      "python",
       "sql",
       "spring boot",
       "aws",
-      "dsa",
-      "oops"
+      "dsa"
     ],
-    "score": 22.22,
-    "status": "Rejected",
-    "applied_date": "2026-02-17 12:50:03",
-    "reviewed_date": "2026-02-17 12:50:43"
+    "score": 7.14,
+    "skill_score": 14.29,
+    "exp_score": 0,
+    "projects_score": 0.0,
+    "cert_score": 0.0,
+    "exp_years": 0,
+    "projects_count": 0,
+    "cert_count": 0,
+    "status": "Pending",
+    "applied_date": "2026-04-04 05:36:38"
   },
   {
-    "id": "20260220_001558",
-    "name": "Mohit Bhatt",
+    "id": "20260404_053835",
+    "name": "Geeta Gariya",
+    "email": "gariyageeta85@gmail.com",
+    "qualification": "Diploma in IT",
+    "company": "TCS",
+    "resume": "20260404_053835_GEETA RESUME.pdf",
+    "skills_found": [
+      "html",
+      "css",
+      "git",
+      "java",
+      "javascript"
+    ],
+    "matched_skills": [
+      "java"
+    ],
+    "missing_skills": [
+      "python",
+      "sql",
+      "spring boot",
+      "aws",
+      "dsa"
+    ],
+    "score": 7.14,
+    "skill_score": 14.29,
+    "exp_score": 0,
+    "projects_score": 0.0,
+    "cert_score": 0.0,
+    "exp_years": 0,
+    "projects_count": 0,
+    "cert_count": 0,
+    "status": "Pending",
+    "applied_date": "2026-04-04 05:38:36"
+  },
+  {
+    "id": "20260404_054149",
+    "name": "saloni",
+    "email": "salonirautela11@gmail.com",
+    "qualification": "Diploma in IT",
+    "company": "Salesforce",
+    "resume": "20260404_054149_Saloni Resume.pdf",
+    "skills_found": [
+      "html",
+      "css",
+      "git",
+      "java",
+      "javascript"
+    ],
+    "matched_skills": [
+      "java",
+      "javascript"
+    ],
+    "missing_skills": [
+      "apex",
+      "sql",
+      "cloud computing",
+      "lightning",
+      "dsa"
+    ],
+    "score": 14.29,
+    "skill_score": 28.57,
+    "exp_score": 0,
+    "projects_score": 0.0,
+    "cert_score": 0.0,
+    "exp_years": 0,
+    "projects_count": 0,
+    "cert_count": 0,
+    "status": "Shortlisted",
+    "applied_date": "2026-04-04 05:41:50"
+  },
+  {
+    "id": "20260404_054350",
+    "name": "Sneha Bisht",
+    "email": "snehabisht81@gmail.com",
+    "qualification": "Diploma in IT",
+    "company": "TCS",
+    "resume": "20260404_054350_Sneha Resume.pdf",
+    "skills_found": [
+      "html",
+      "css",
+      "git",
+      "java",
+      "javascript"
+    ],
+    "matched_skills": [
+      "java"
+    ],
+    "missing_skills": [
+      "python",
+      "sql",
+      "spring boot",
+      "aws",
+      "dsa"
+    ],
+    "score": 7.14,
+    "skill_score": 14.29,
+    "exp_score": 0,
+    "projects_score": 0.0,
+    "cert_score": 0.0,
+    "exp_years": 0,
+    "projects_count": 0,
+    "cert_count": 0,
+    "status": "Pending",
+    "applied_date": "2026-04-04 05:43:50"
+  },
+  {
+    "id": "20260404_054551",
+    "name": "Himanshu Bhatt",
+    "email": "himanshubhatt070707@gmail.com",
+    "qualification": "Diploma in IT",
+    "company": "Google",
+    "resume": "20260404_054551_himashu RESUME-1.pdf",
+    "skills_found": [
+      "sql",
+      "css",
+      "html"
+    ],
+    "matched_skills": [],
+    "missing_skills": [
+      "python",
+      "c++",
+      "java",
+      "tensorflow",
+      "pytorch"
+    ],
+    "score": 0.0,
+    "skill_score": 0.0,
+    "exp_score": 0,
+    "projects_score": 0.0,
+    "cert_score": 0.0,
+    "exp_years": 0,
+    "projects_count": 0,
+    "cert_count": 0,
+    "status": "Rejected",
+    "applied_date": "2026-04-04 05:45:52"
+  },
+  {
+    "id": "20260404_060428",
+    "name": "Puneet Bhandari",
+    "email": "puneetb177@gmail.com",
+    "qualification": "Diploma in IT",
+    "company": "Google",
+    "resume": "20260404_060428_resume.pdf.pdf",
+    "skills_found": [
+      "javascript",
+      "node",
+      "spring",
+      "python",
+      "kubernetes",
+      "jenkins",
+      "linux",
+      "postgresql",
+      "flask",
+      "django",
+      "pytorch",
+      "java",
+      "react",
+      "mongodb",
+      "sql"
+    ],
+    "matched_skills": [
+      "python",
+      "c++",
+      "java",
+      "tensorflow",
+      "pytorch",
+      "kubernetes"
+    ],
+    "missing_skills": [
+      "system design",
+      "dsa"
+    ],
+    "score": 62.5,
+    "skill_score": 75.0,
+    "exp_score": 0,
+    "projects_score": 100,
+    "cert_score": 100,
+    "exp_years": 0,
+    "projects_count": 5,
+    "cert_count": 4,
+    "status": "Shortlisted",
+    "applied_date": "2026-04-04 06:04:28"
+  },
+  {
+    "id": "20260404_062431",
+    "name": "  Bhatt",
     "email": "mohitbhatt2030@gmail.com",
     "qualification": "Diploma in IT",
     "company": "Google",
-    "resume": "20260220_001558_resume (1).pdf",
+    "resume": "20260404_062431_resume.pdf.pdf",
     "skills_found": [
+      "docker",
+      "pytorch",
+      "jenkins",
+      "javascript",
+      "spring",
+      "git",
+      "c++",
+      "flask",
       "java",
-      "tf",
+      "linux",
+      "mongodb",
+      "python",
+      "django",
+      "tensorflow",
+      "devops"
+    ],
+    "matched_skills": [
+      "python",
+      "c++",
+      "java",
+      "tensorflow",
+      "pytorch",
+      "kubernetes"
+    ],
+    "missing_skills": [
+      "system design",
+      "dsa"
+    ],
+    "score": 62.5,
+    "skill_score": 75.0,
+    "exp_score": 0,
+    "projects_score": 100,
+    "cert_score": 100,
+    "exp_years": 0,
+    "projects_count": 5,
+    "cert_count": 4,
+    "status": "Shortlisted",
+    "applied_date": "2026-04-04 06:24:31"
+  },
+  {
+    "id": "20260404_063032",
+    "name": " Bhatt",
+    "email": "bhattji6399@gmail.com",
+    "qualification": "Diploma in IT",
+    "company": "Google",
+    "resume": "20260404_063032_resume.pdf.pdf",
+    "skills_found": [
+      "python",
+      "java",
+      "c++",
+      "sql",
+      "aws",
+      "docker",
+      "react",
+      "node",
+      "javascript"
+    ],
+    "matched_skills": [
+      "python",
+      "c++",
+      "java",
+      "sql",
+      "aws"
+    ],
+    "score": 100.0,
+    "status": "Pending",
+    "applied_date": "2026-04-04 06:30:32"
+  },
+  {
+    "id": "20260405_125853",
+    "name": "mohit",
+    "email": "mohitbhatt2030@gmail.com",
+    "qualification": "Diploma in CS",
+    "company": "Google",
+    "resume": "20260405_125853_resume.pdf.pdf",
+    "skills_found": [
+      "node",
+      "devops",
+      "javascript",
+      "docker",
+      "flask",
+      "react",
+      "python",
+      "linux",
+      "aws",
+      "git",
+      "sql",
+      "mongodb",
+      "c++",
+      "kubernetes",
+      "jenkins"
+    ],
+    "matched_skills": [
+      "python",
+      "c++",
+      "java",
+      "tensorflow",
+      "pytorch",
+      "kubernetes"
+    ],
+    "missing_skills": [
+      "system design",
+      "dsa"
+    ],
+    "score": 62.5,
+    "skill_score": 75.0,
+    "exp_score": 0,
+    "projects_score": 100,
+    "cert_score": 100,
+    "exp_years": 0,
+    "projects_count": 5,
+    "cert_count": 4,
+    "status": "Shortlisted",
+    "applied_date": "2026-04-05 12:58:53"
+  },
+  {
+    "id": "20260405_154507",
+    "name": "bhatt",
+    "email": "mohitbhatt2030@gmail.com",
+    "qualification": "Diploma in IT",
+    "company": "Adobe",
+    "resume": "20260405_154507_resume.pdf.pdf",
+    "skills_found": [
+      "react",
+      "git",
+      "aws",
+      "postgresql",
+      "node",
+      "tensorflow",
+      "kubernetes",
+      "docker",
+      "devops",
+      "pytorch",
+      "flask",
+      "linux",
+      "jenkins",
+      "mongodb",
+      "django"
+    ],
+    "matched_skills": [
+      "javascript",
+      "c++",
+      "python",
+      "react",
+      "node.js"
+    ],
+    "missing_skills": [
+      "cloud",
+      "dsa"
+    ],
+    "score": 60.71,
+    "skill_score": 71.43,
+    "exp_score": 0,
+    "projects_score": 100,
+    "cert_score": 100,
+    "exp_years": 0,
+    "projects_count": 5,
+    "cert_count": 4,
+    "status": "Shortlisted",
+    "applied_date": "2026-04-05 15:45:07"
+  },
+  {
+    "id": "20260417_140920",
+    "name": "1234",
+    "email": "himanshubhatt050505@gmail.com",
+    "qualification": "Diploma in IT",
+    "company": "Google",
+    "resume": "20260417_140920_resume (3).pdf",
+    "skills_found": [
+      "sql",
+      "java",
+      "css",
+      "html",
+      "javascript",
       "python"
     ],
     "matched_skills": [
@@ -78,9 +979,279 @@
       "kubernetes",
       "system design"
     ],
-    "score": 22.22,
+    "score": 27.5,
+    "skill_score": 25.0,
+    "exp_score": 0,
+    "projects_score": 100,
+    "cert_score": 0.0,
+    "exp_years": 0,
+    "projects_count": 4,
+    "cert_count": 0,
+    "status": "Rejected",
+    "applied_date": "2026-04-17 14:09:21"
+  },
+  {
+    "id": "20260417_141037",
+    "name": "himanshu ",
+    "email": "himanshubhatt050505@gmail.com",
+    "qualification": "Diploma in IT",
+    "company": "Microsoft",
+    "resume": "20260417_141037_resume.pdf.pdf",
+    "skills_found": [
+      "docker",
+      "flask",
+      "git",
+      "devops",
+      "c++",
+      "aws",
+      "java",
+      "tensorflow",
+      "mongodb",
+      "django",
+      "jenkins",
+      "sql",
+      "kubernetes",
+      "spring",
+      "pytorch"
+    ],
+    "matched_skills": [
+      "python",
+      "sql"
+    ],
+    "missing_skills": [
+      "c#",
+      "azure",
+      "power bi",
+      ".net core",
+      "system design"
+    ],
+    "score": 37.5,
+    "skill_score": 25.0,
+    "exp_score": 0,
+    "projects_score": 100,
+    "cert_score": 100,
+    "exp_years": 0,
+    "projects_count": 5,
+    "cert_count": 4,
+    "status": "Pending",
+    "applied_date": "2026-04-17 14:10:38"
+  },
+  {
+    "id": "20260417_141512",
+    "name": "Himanshu Bhatt",
+    "email": "himanshubhatt070707@gmail.com",
+    "qualification": "Diploma in IT",
+    "company": "TCS",
+    "resume": "20260417_141512_himashu RESUME-1.pdf",
+    "skills_found": [
+      "sql",
+      "html",
+      "css"
+    ],
+    "matched_skills": [
+      "sql"
+    ],
+    "missing_skills": [
+      "java",
+      "python",
+      "spring boot",
+      "aws",
+      "dsa"
+    ],
+    "score": 7.14,
+    "skill_score": 14.29,
+    "exp_score": 0,
+    "projects_score": 0.0,
+    "cert_score": 0.0,
+    "exp_years": 0,
+    "projects_count": 0,
+    "cert_count": 0,
     "status": "Shortlisted",
-    "applied_date": "2026-02-20 00:15:58",
-    "reviewed_date": "2026-02-20 00:18:14"
+    "applied_date": "2026-04-17 14:15:12"
+  },
+  {
+    "id": "20260417_182544",
+    "name": "Mohit Bhatt",
+    "email": "mohitbhatt2030@gmail.com",
+    "qualification": "Diploma in IT",
+    "company": "Google",
+    "resume": "20260417_182544_mohit_rusume.pdf.pdf",
+    "skills_found": [
+      "java",
+      "javascript",
+      "git",
+      "node",
+      "html",
+      "python",
+      "css"
+    ],
+    "matched_skills": [
+      "python",
+      "java"
+    ],
+    "missing_skills": [
+      "c++",
+      "tensorflow",
+      "pytorch",
+      "kubernetes",
+      "system design"
+    ],
+    "score": 27.5,
+    "skill_score": 25.0,
+    "exp_score": 0,
+    "projects_score": 100,
+    "cert_score": 0.0,
+    "exp_years": 0,
+    "projects_count": 4,
+    "cert_count": 0,
+    "status": "Shortlisted",
+    "applied_date": "2026-04-17 18:25:44"
+  },
+  {
+    "id": "20260418_114943",
+    "name": "Mohit Bhatt",
+    "email": "mohitbhatt2030@gmail.com",
+    "qualification": "Diploma in IT",
+    "company": "Infosys",
+    "resume": "20260418_114943_resume.pdf.pdf",
+    "skills_found": [
+      "java",
+      "javascript",
+      "tensorflow",
+      "git",
+      "mongodb",
+      "flask",
+      "django",
+      "pytorch",
+      "node",
+      "kubernetes",
+      "spring",
+      "postgresql",
+      "react",
+      "c++",
+      "aws"
+    ],
+    "matched_skills": [
+      "python",
+      "java",
+      "spring",
+      "aws",
+      "sql"
+    ],
+    "missing_skills": [
+      "azure",
+      "dsa"
+    ],
+    "score": 60.71,
+    "skill_score": 71.43,
+    "exp_score": 0,
+    "projects_score": 100,
+    "cert_score": 100,
+    "exp_years": 0,
+    "projects_count": 5,
+    "cert_count": 4,
+    "status": "Pending",
+    "applied_date": "2026-04-18 11:49:43"
+  },
+  {
+    "id": "20260419_042315",
+    "name": "Mohit Bhatt",
+    "email": "mohitbhatt2030@gmail.com",
+    "qualification": "Diploma in IT",
+    "company": "Google",
+    "resume": "20260419_042315_resume.pdf.pdf",
+    "skills_found": [
+      "c++",
+      "linux",
+      "devops",
+      "python",
+      "postgresql",
+      "javascript",
+      "kubernetes",
+      "node",
+      "git",
+      "flask",
+      "java",
+      "pytorch",
+      "docker",
+      "react",
+      "sql"
+    ],
+    "matched_skills": [
+      "python",
+      "c++",
+      "java",
+      "tensorflow",
+      "pytorch",
+      "kubernetes"
+    ],
+    "missing_skills": [
+      "system design",
+      "dsa"
+    ],
+    "score": 62.5,
+    "skill_score": 75.0,
+    "exp_score": 0,
+    "projects_score": 100,
+    "cert_score": 100,
+    "exp_years": 0,
+    "projects_count": 5,
+    "cert_count": 4,
+    "status": "Shortlisted",
+    "applied_date": "2026-04-19 04:23:15"
+  },
+  {
+    "id": "20260419_042541",
+    "name": "dishu",
+    "email": "jeenandra.2003@gmail.com",
+    "qualification": "Diploma in IT",
+    "company": "Microsoft",
+    "resume": "20260419_042541_Deepika_Jeena_Resume (1).docx",
+    "skills_found": [],
+    "matched_skills": [],
+    "missing_skills": [
+      "c#",
+      "python",
+      "azure",
+      "sql",
+      "power bi"
+    ],
+    "score": 0.0,
+    "skill_score": 0.0,
+    "exp_score": 0,
+    "projects_score": 0.0,
+    "cert_score": 0.0,
+    "exp_years": 0,
+    "projects_count": 0,
+    "cert_count": 0,
+    "status": "Rejected",
+    "applied_date": "2026-04-19 04:25:41"
+  },
+  {
+    "id": "20260421_174407",
+    "name": "mohit Bhatt",
+    "email": "mohitbhatt2030@gmail.com",
+    "qualification": "Diploma in IT",
+    "company": "Amazon",
+    "resume": "20260421_174407_resume new.pdf",
+    "skills_found": [],
+    "matched_skills": [],
+    "missing_skills": [
+      "java",
+      "c++",
+      "python",
+      "aws",
+      "distributed systems"
+    ],
+    "score": 0.0,
+    "skill_score": 0.0,
+    "exp_score": 0,
+    "projects_score": 0.0,
+    "cert_score": 0.0,
+    "exp_years": 0,
+    "projects_count": 0,
+    "cert_count": 0,
+    "status": "Shortlisted",
+    "applied_date": "2026-04-21 17:44:11"
   }
 ]
