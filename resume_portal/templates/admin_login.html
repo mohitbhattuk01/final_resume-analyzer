@@ -125,16 +125,7 @@
             box-shadow: 0 12px 30px rgba(124,92,255,0.4);
         }
 
-        .demo-creds {
-            margin-top: 28px; padding: 18px;
-            background: rgba(124,92,255,0.08);
-            border-radius: 12px;
-            border: 1px solid rgba(124,92,255,0.15);
-        }
 
-        .demo-creds h4 { color: #c4b5fd; margin-bottom: 10px; font-size: 13px; font-weight: 600; }
-        .demo-creds p { color: #94a3b8; margin: 4px 0; text-align: left; font-size: 13px; }
-        .demo-creds strong { color: #e2e8f0; }
 
         .message {
             margin-top: 18px; padding: 14px;
@@ -171,23 +162,18 @@
 
             <div class="form-group">
                 <label>👤 Username</label>
-                <input type="text" id="username" placeholder="Enter username" value="admin">
+                <input type="text" id="username" placeholder="Enter username">
             </div>
 
             <div class="form-group">
                 <label>🔑 Password</label>
-                <input type="password" id="password" placeholder="Enter password" value="admin123">
+                <input type="password" id="password" placeholder="Enter password">
             </div>
 
             <button class="login-btn" onclick="login()">
                 🚀 Login to Dashboard
             </button>
 
-            <div class="demo-creds">
-                <h4>📌 Demo Credentials</h4>
-                <p><strong>Username:</strong> admin</p>
-                <p><strong>Password:</strong> admin123</p>
-            </div>
 
             <div id="messageBox" class="message"></div>
         </div>
