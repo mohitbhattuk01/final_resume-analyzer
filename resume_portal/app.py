@@ -555,10 +555,10 @@ UPLOAD_FOLDER = os.path.join(BASE_DIR, 'static', 'uploads')
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 # ========== JSON DATABASES ==========
-PROJECT_ROOT = os.path.dirname(BASE_DIR)
-APPLICANTS_FILE = os.path.join(PROJECT_ROOT, 'applicants.json')
-COMPANIES_FILE = os.path.join(PROJECT_ROOT, 'companies.json')
-ADMIN_FILE = os.path.join(PROJECT_ROOT, 'admin.json')
+# All data files stored relative to app.py (works on both local & Render)
+APPLICANTS_FILE = os.path.join(BASE_DIR, 'applicants.json')
+COMPANIES_FILE = os.path.join(BASE_DIR, 'companies.json')
+ADMIN_FILE = os.path.join(BASE_DIR, 'admin.json')
 
 # Create admin credentials
 if not os.path.exists(ADMIN_FILE):
