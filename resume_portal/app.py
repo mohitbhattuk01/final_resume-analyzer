@@ -552,8 +552,8 @@ COMPANY_DATA = [
 ]
 
 # ========== EMAIL FUNCTION ==========
-SENDER_EMAIL = "mohitnjatt1122@gmail.com"
-SENDER_PASSWORD = "nvkn lbrt hxqx umqx"
+SENDER_EMAIL = os.environ.get("SENDER_EMAIL", "pro.it2026dev@gmail.com")
+SENDER_PASSWORD = os.environ.get("SENDER_PASSWORD", "nvkn lbrt hxqx umqx")
 
 def send_status_email(applicant, status):
     try:
@@ -609,7 +609,7 @@ Best regards,
             return False
         
         msg = MIMEMultipart()
-        msg['From'] = SENDER_EMAIL
+        msg['From'] = f"AI Recruitment Portal <{SENDER_EMAIL}>"
         msg['To'] = email
         msg['Subject'] = subject
         msg.attach(MIMEText(body, 'plain'))
@@ -626,8 +626,6 @@ Best regards,
         print(f"⚠️ Email dispatch note (safe fallback): {e}")
         return False
 
- 
-
 
 
 
@@ -636,10 +634,10 @@ Best regards,
 def view_resume(filename):
     import urllib.parse
     
-    # Decode filename (for spaces and special chars)
-    filename = urllib.parse.unquote(filename)
+    # Decode filename & sanitize to basename
+    clean_filename = os.path.basename(urllib.parse.unquote(filename))
     
-    print(f"🔍 Looking for: {filename}")
+    print(f"🔍 Looking for: {clean_filename}")
     
     # Try multiple upload folder locations
     search_paths = [
@@ -649,19 +647,110 @@ def view_resume(filename):
     ]
     
     for folder in search_paths:
-        full_path = os.path.join(folder, filename)
-        print(f"📁 Checking: {full_path}")
-        if os.path.exists(full_path):
+        full_path = os.path.join(folder, clean_filename)
+        if os.path.exists(full_path) and os.path.isfile(full_path):
             print(f"✅ File found at: {full_path}")
-            return send_from_directory(folder, filename, as_attachment=False)
+            return send_from_directory(folder, clean_filename, mimetype='application/pdf', as_attachment=False)
     
-    # If not found, list what's in the upload folders for debugging
-    for folder in search_paths:
-        if os.path.exists(folder):
-            print(f"📂 Files in {folder}: {os.listdir(folder)[:5]}")
+    print(f"❌ File not found on disk: {clean_filename}")
     
-    print(f"❌ File not found: {filename}")
-    return f"File not found: {filename}", 404
+    # Render an elegant explanation page instead of raw text error
+    html_fallback = f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume PDF Not Available</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {{
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }}
+        .card {{
+            background: #1e293b;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 540px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }}
+        .icon {{
+            font-size: 54px;
+            margin-bottom: 16px;
+        }}
+        h2 {{
+            color: #f8fafc;
+            margin-bottom: 12px;
+            font-size: 22px;
+        }}
+        p {{
+            color: #94a3b8;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }}
+        .file-box {{
+            background: #0f172a;
+            padding: 12px 16px;
+            border-radius: 10px;
+            font-family: monospace;
+            color: #38bdf8;
+            font-size: 13px;
+            word-break: break-all;
+            margin-bottom: 24px;
+            border: 1px solid #334155;
+        }}
+        .info-pill {{
+            background: rgba(245, 158, 11, 0.15);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            color: #fbbf24;
+            padding: 10px 14px;
+            border-radius: 10px;
+            font-size: 13px;
+            text-align: left;
+            margin-bottom: 24px;
+        }}
+        .btn {{
+            display: inline-block;
+            background: #4f46e5;
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.2s;
+        }}
+        .btn:hover {{
+            background: #4338ca;
+            transform: translateY(-2px);
+        }}
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="icon">📄</div>
+        <h2>Resume PDF Stored Before Cloud Reboot</h2>
+        <div class="file-box">{clean_filename}</div>
+        <div class="info-pill">
+            💡 <strong>Why is this happening?</strong><br>
+            Render free cloud tier uses ephemeral (temporary) disk storage. Whenever Render restarts or redeploys, older uploaded PDF files are cleared from the container disk.
+        </div>
+        <p>The candidate's score, skills, and application details remain securely saved in the database. Any resume uploaded in the current session opens directly.</p>
+        <a href="/admin/dashboard" class="btn">🔙 Return to Dashboard</a>
+    </div>
+</body>
+</html>"""
+    return html_fallback, 404
 
  
 
