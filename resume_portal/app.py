@@ -568,48 +568,43 @@ def send_status_email(applicant, status):
             return False
             
         if norm_status in ["Shortlisted", "Selected"]:
-            subject = f"Application Status Update: Shortlisted for {comp}"
+            subject = f"Resume Screening Result: Shortlisted for {comp}"
             body = f"""Dear {name},
 
-CONGRATULATIONS! You have been SHORTLISTED / SELECTED for {comp}.
+Great news! Your application has been reviewed and SHORTLISTED for {comp} via our AI Resume Screening Portal.
 
-📊 YOUR SCORE BREAKDOWN:
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🏢 Company: {comp}
-🎯 Final Score: {score}%
-📈 Skill Score: {applicant.get('skill_score', 0)}%     
-💼 Experience: {applicant.get('exp_years', 0)} years ({applicant.get('exp_score', 0)}%)
-📁 Projects: {applicant.get('projects_count', 0)} ({applicant.get('projects_score', 0)}%)
-🎓 Certifications: {applicant.get('cert_count', 0)} ({applicant.get('cert_score', 0)}%)
+Candidate: {name}
+Company: {comp}
+Overall Score: {score}%
+Skill Match: {applicant.get('skill_score', 0)}%
+Matched Skills: {', '.join(applicant.get('matched_skills', [])[:5]) or 'Verified'}
 
-✅ Skills Matched: {', '.join(applicant.get('matched_skills', [])[:5])}
-
-📌 NEXT STEPS:
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-• Interview details will be sent within 48 hours
+Your profile matches the requirements for this role.
 
 Best regards,
-{comp} Recruitment Team
+Mohit Bhatt
+AI Resume Screening Portal
 """
         elif norm_status == "Rejected":
-            subject = f"Application Status Update: {comp}"
+            subject = f"Resume Screening Result: {comp}"
             body = f"""Dear {name},
 
-Thank you for applying to {comp}.
+Thank you for your application for {comp} on our AI Resume Screening Portal.
 
-📊 YOUR SCORE: {score}%
-❌ Status: Not Selected this time
+Overall Score: {score}%
+Status: Not Selected
 
-We encourage you to apply again in future.
+We encourage you to enhance your technical skills and apply again for upcoming opportunities.
 
 Best regards,
-{comp} Recruitment Team
+Mohit Bhatt
+AI Resume Screening Portal
 """
         else:
             return False
         
         msg = MIMEMultipart()
-        msg['From'] = f"HR Recruitment <{SENDER_EMAIL}>"
+        msg['From'] = f"Mohit Bhatt - Resume Portal <{SENDER_EMAIL}>"
         msg['To'] = email
         msg['Subject'] = subject
         msg.attach(MIMEText(body, 'plain'))
