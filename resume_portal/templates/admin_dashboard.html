@@ -213,43 +213,46 @@
         .status-shortlisted { background: rgba(56,189,248,0.15); color: #38bdf8; border: 1px solid rgba(56,189,248,0.25); }
         .status-rejected { background: rgba(239,68,68,0.15); color: #f87171; border: 1px solid rgba(239,68,68,0.25); }
 
-        .action-buttons { display: flex; gap: 6px; flex-wrap: wrap; }
+        .action-buttons { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
 
         .shortlist-btn {
-            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            background: #059669;
             color: white; border: none;
             padding: 6px 12px; border-radius: 8px;
-            cursor: pointer; font-weight: 600; font-size: 11px;
+            cursor: pointer; font-weight: 600; font-size: 12px;
             transition: all 0.2s;
+            display: inline-flex; align-items: center; gap: 4px;
         }
-        .shortlist-btn:hover { transform: scale(1.05); box-shadow: 0 4px 12px rgba(59,130,246,0.3); }
+        .shortlist-btn:hover { background: #047857; transform: scale(1.03); }
 
         .reject-btn {
-            background: linear-gradient(135deg, #ef4444, #dc2626);
+            background: #dc2626;
             color: white; border: none;
             padding: 6px 12px; border-radius: 8px;
-            cursor: pointer; font-weight: 600; font-size: 11px;
+            cursor: pointer; font-weight: 600; font-size: 12px;
             transition: all 0.2s;
+            display: inline-flex; align-items: center; gap: 4px;
         }
-        .reject-btn:hover { transform: scale(1.05); box-shadow: 0 4px 12px rgba(239,68,68,0.3); }
+        .reject-btn:hover { background: #b91c1c; transform: scale(1.03); }
 
         .delete-btn {
-            background: rgba(127,29,29,0.5);
-            color: #fca5a5; border: 1px solid rgba(239,68,68,0.2);
-            padding: 6px 12px; border-radius: 8px;
-            cursor: pointer; font-weight: 600; font-size: 11px;
+            background: rgba(127,29,29,0.4);
+            color: #fca5a5; border: 1px solid rgba(239,68,68,0.3);
+            padding: 6px 10px; border-radius: 8px;
+            cursor: pointer; font-weight: 600; font-size: 12px;
             transition: all 0.2s;
         }
-        .delete-btn:hover { background: rgba(239,68,68,0.3); transform: scale(1.05); }
+        .delete-btn:hover { background: rgba(239,68,68,0.4); transform: scale(1.03); }
 
         .view-resume-btn {
-            background: linear-gradient(135deg, #7c5cff, #6d28d9);
+            background: #2563eb;
             color: white; border: none;
             padding: 6px 12px; border-radius: 8px;
-            cursor: pointer; font-weight: 600; font-size: 11px;
+            cursor: pointer; font-weight: 600; font-size: 12px;
             transition: all 0.2s;
+            display: inline-flex; align-items: center; gap: 4px;
         }
-        .view-resume-btn:hover { transform: scale(1.05); box-shadow: 0 4px 12px rgba(124,92,255,0.3); }
+        .view-resume-btn:hover { background: #1d4ed8; transform: scale(1.03); }
 
         .qual-badge {
             background: rgba(124,92,255,0.12);
@@ -426,10 +429,10 @@
                             <td><span class="status-badge ${statusClass}">${app.status || 'Pending'}</span></td>
                             <td style="font-size:12px;">${app.applied_date || 'N/A'}</td>
                             <td><div class="action-buttons">
-                                <button class="shortlist-btn" onclick="updateStatus('${app.id}','Shortlisted')">✅</button>
-                                <button class="reject-btn" onclick="updateStatus('${app.id}','Rejected')">❌</button>
-                                <button class="delete-btn" onclick="deleteApplicant('${app.id}')">🗑️</button>
-                                <button class="view-resume-btn" onclick="viewResume('${app.resume}')">📄 Resume</button>
+                                <button class="shortlist-btn" onclick="updateStatus('${app.id}','Shortlisted')" title="Select / Shortlist Candidate">✅ Select</button>
+                                <button class="reject-btn" onclick="updateStatus('${app.id}','Rejected')" title="Reject Candidate">❌ Reject</button>
+                                <button class="view-resume-btn" onclick="viewResume('${app.resume}')" title="View Candidate Resume PDF">📄 View Resume</button>
+                                <button class="delete-btn" onclick="deleteApplicant('${app.id}')" title="Delete">🗑️</button>
                             </div></td>
                         </tr>`;
                     });
@@ -444,21 +447,32 @@
                     method:'POST', headers:{'Content-Type':'application/json'},
                     body:JSON.stringify({id, status})
                 })).json();
-                if (res.success) { showToast(`Status → ${status}`); loadDashboard(); }
-            } catch(e) { showToast('Update failed', true); }
+                if (res.success) { 
+                    showToast(`Candidate Status updated to: ${status}`); 
+                    loadApplicants(); 
+                } else {
+                    showToast('Update failed', true);
+                }
+            } catch(e) { showToast('Update error: ' + e, true); }
         }
 
         async function deleteApplicant(id) {
             if (!confirm('Permanently delete this applicant?')) return;
             try {
                 let res = await (await fetch('/api/admin/delete_applicant', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({id}) })).json();
-                if (res.success) { showToast('Applicant deleted'); loadDashboard(); }
+                if (res.success) { showToast('Applicant deleted'); loadApplicants(); }
                 else showToast('Delete failed', true);
             } catch(e) { showToast('Delete error', true); }
         }
 
         function viewResume(filename) {
-            window.open(`/view_resume/${encodeURIComponent(filename)}`, '_blank');
+            if (!filename || filename === 'undefined' || filename === 'null') {
+                showToast('⚠️ No resume PDF uploaded for this applicant', true);
+                return;
+            }
+            // Clean filename if it starts with static or uploads
+            const clean = filename.replace(/^.*[\\\/]/, '');
+            window.open(`/view_resume/${encodeURIComponent(clean)}`, '_blank');
         }
 
         async function showTop10(company) {

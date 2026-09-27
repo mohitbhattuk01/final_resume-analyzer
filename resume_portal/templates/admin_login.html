@@ -1,198 +1,358 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Admin Login - Resume Screening 2026</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Portal - AI Resume Screening</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif; }
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter', sans-serif; }
 
         body {
-            background: #0b0d17;
+            background: #f1f5f9;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            color: white;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: -50%; left: -50%;
-            width: 200%; height: 200%;
-            background: radial-gradient(circle at 30% 40%, rgba(120,80,255,0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 70% 60%, rgba(0,210,255,0.07) 0%, transparent 50%),
-                        radial-gradient(circle at 50% 80%, rgba(255,100,200,0.06) 0%, transparent 50%);
-            animation: bgFloat 20s ease-in-out infinite;
-            z-index: 0;
-        }
-        @keyframes bgFloat {
-            0%,100% { transform: translate(0,0) rotate(0deg); }
-            50% { transform: translate(-2%,2%) rotate(3deg); }
+            color: #1e293b;
         }
 
         .header {
-            background: rgba(11,13,23,0.85);
-            backdrop-filter: blur(20px);
-            padding: 16px 40px;
+            background: #ffffff;
+            padding: 16px 36px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid rgba(120,80,255,0.3);
-            position: relative; z-index: 2;
+            border-bottom: 1px solid #e2e8f0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }
 
         .logo h1 {
-            font-size: 22px; font-weight: 800;
-            background: linear-gradient(135deg, #7c5cff, #00d4ff, #ff6ec7);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-size: 20px;
+            font-weight: 800;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .nav a {
-            color: #94a3b8; text-decoration: none;
-            margin-left: 20px;
-            padding: 8px 18px; border-radius: 10px;
-            font-size: 14px; font-weight: 500;
-            transition: all 0.3s;
+            color: #64748b;
+            text-decoration: none;
+            margin-left: 14px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
         }
-        .nav a:hover { background: rgba(124,92,255,0.15); color: #c4b5fd; }
+        .nav a:hover, .nav a.active {
+            background: #e0e7ff;
+            color: #4338ca;
+        }
 
         .login-container {
-            flex: 1; display: flex;
-            justify-content: center; align-items: center;
-            padding: 20px; position: relative; z-index: 1;
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 20px;
         }
 
         .login-box {
-            background: rgba(20,22,40,0.7);
-            backdrop-filter: blur(24px);
-            padding: 48px;
-            border-radius: 24px;
-            width: 100%; max-width: 460px;
-            border: 1px solid rgba(124,92,255,0.2);
-            box-shadow: 0 25px 60px rgba(0,0,0,0.4);
+            background: #ffffff;
+            padding: 40px 36px;
+            border-radius: 16px;
+            width: 100%;
+            max-width: 440px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
         }
 
-        .login-box h2 {
-            font-size: 28px; font-weight: 800;
-            background: linear-gradient(135deg, #c4b5fd, #7c5cff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 8px; text-align: center;
+        .login-header {
+            text-align: center;
+            margin-bottom: 24px;
         }
 
-        .login-box .subtitle {
-            color: #64748b; text-align: center;
-            margin-bottom: 32px; font-size: 14px;
+        .login-header h2 {
+            font-size: 24px;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 6px;
         }
 
-        .form-group { margin-bottom: 22px; }
+        .login-header p {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        /* Mode Tabs: Login vs Change Password */
+        .tab-bar {
+            display: flex;
+            background: #f1f5f9;
+            padding: 4px;
+            border-radius: 10px;
+            margin-bottom: 24px;
+            gap: 4px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 9px 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            background: transparent;
+            color: #64748b;
+            transition: all 0.2s;
+        }
+
+        .tab-btn.active {
+            background: #ffffff;
+            color: #1e293b;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
 
         label {
-            display: block; color: #94a3b8;
-            margin-bottom: 8px; font-size: 13px;
-            font-weight: 600; text-transform: uppercase;
-            letter-spacing: 0.8px;
+            display: block;
+            color: #334155;
+            margin-bottom: 6px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
         }
 
         input {
-            width: 100%; padding: 14px 18px;
-            background: rgba(30,33,58,0.6);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 12px; color: white;
-            font-size: 15px; transition: all 0.3s;
-            font-family: 'Inter', sans-serif;
+            width: 100%;
+            padding: 11px 14px;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            color: #0f172a;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
         }
 
         input:focus {
-            outline: none;
-            border-color: #7c5cff;
-            box-shadow: 0 0 0 3px rgba(124,92,255,0.15);
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
         }
 
-        .login-btn {
-            background: linear-gradient(135deg, #7c5cff, #6d28d9);
-            color: white; border: none;
-            padding: 15px 36px; border-radius: 12px;
-            font-size: 16px; font-weight: 700;
-            cursor: pointer; width: 100%;
-            transition: all 0.3s; margin-top: 8px;
-            letter-spacing: 0.5px;
+        .toggle-btn {
+            position: absolute;
+            right: 12px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            color: #64748b;
+            padding: 0;
+            line-height: 1;
         }
 
-        .login-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 30px rgba(124,92,255,0.4);
+        .action-btn {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.2s;
+            margin-top: 8px;
         }
 
+        .action-btn:hover {
+            background: #1d4ed8;
+        }
 
+        .action-btn.btn-secondary {
+            background: #059669;
+        }
+        .action-btn.btn-secondary:hover {
+            background: #047857;
+        }
 
         .message {
-            margin-top: 18px; padding: 14px;
-            border-radius: 10px; display: none;
-            font-size: 14px; font-weight: 500;
+            margin-top: 16px;
+            padding: 12px 14px;
+            border-radius: 8px;
+            display: none;
+            font-size: 13px;
+            font-weight: 500;
         }
 
-        .success { background: rgba(16,185,129,0.12); border: 1px solid rgba(16,185,129,0.3); color: #34d399; }
-        .error { background: rgba(239,68,68,0.12); border: 1px solid rgba(239,68,68,0.3); color: #f87171; }
+        .success {
+            background: #ecfdf5;
+            border: 1px solid #a7f3d0;
+            color: #065f46;
+        }
+
+        .error {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #991b1b;
+        }
+
+        .helper-text {
+            font-size: 12px;
+            color: #64748b;
+            margin-top: 14px;
+            text-align: center;
+            line-height: 1.5;
+        }
 
         .footer {
-            background: rgba(11,13,23,0.9);
-            text-align: center; padding: 18px;
-            color: #475569; font-size: 13px;
-            border-top: 1px solid rgba(255,255,255,0.04);
-            position: relative; z-index: 1;
+            background: #ffffff;
+            text-align: center;
+            padding: 16px;
+            color: #64748b;
+            font-size: 13px;
+            border-top: 1px solid #e2e8f0;
         }
     </style>
 </head>
 <body>
     <div class="header">
-        <div class="logo"><h1>🔐 ADMIN PANEL</h1></div>
+        <div class="logo">
+            <h1>🔐 Admin Portal</h1>
+        </div>
         <div class="nav">
             <a href="/">🏠 Home</a>
             <a href="/apply">📄 Apply</a>
-            <a href="/admin">🔐 Admin</a>
+            <a href="/admin" class="active">🔐 Admin</a>
         </div>
     </div>
 
     <div class="login-container">
         <div class="login-box">
-            <h2>Admin Login</h2>
-            <p class="subtitle">Enter credentials to access the dashboard</p>
-
-            <div class="form-group">
-                <label>👤 Username</label>
-                <input type="text" id="username" placeholder="Enter username">
+            <div class="login-header">
+                <h2>Admin Access</h2>
+                <p>Manage candidate screening and applications</p>
             </div>
 
-            <div class="form-group">
-                <label>🔑 Password</label>
-                <input type="password" id="password" placeholder="Enter password">
+            <!-- Tab Switcher -->
+            <div class="tab-bar">
+                <button type="button" class="tab-btn active" id="tabLoginBtn" onclick="switchTab('login')">🔑 Login</button>
+                <button type="button" class="tab-btn" id="tabChangeBtn" onclick="switchTab('change')">🔄 Change / New Password</button>
             </div>
 
-            <button class="login-btn" onclick="login()">
-                🚀 Login to Dashboard
-            </button>
+            <!-- Panel 1: Login Form -->
+            <div id="loginPanel">
+                <div class="form-group">
+                    <label>👤 Username</label>
+                    <input type="text" id="username" value="admin" placeholder="Enter username" autofocus>
+                </div>
 
+                <div class="form-group">
+                    <label>🔑 Password</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="password" placeholder="Enter password (default: admin@121)">
+                        <button type="button" class="toggle-btn" onclick="togglePass('password', this)" title="Show/Hide">👁️</button>
+                    </div>
+                </div>
+
+                <button class="action-btn" onclick="login()">
+                    🚀 Login to Dashboard
+                </button>
+
+                <p class="helper-text">
+                    Default Passcode: <strong>admin@121</strong>
+                </p>
+            </div>
+
+            <!-- Panel 2: Change / Create New Password Form -->
+            <div id="changePanel" style="display: none;">
+                <div class="form-group">
+                    <label>🔐 Current Password or Master Key</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="currPassword" placeholder="Enter current passcode (e.g. admin@121)">
+                        <button type="button" class="toggle-btn" onclick="togglePass('currPassword', this)">👁️</button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>✨ New Password</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="newPassword" placeholder="Enter new password (min 4 characters)">
+                        <button type="button" class="toggle-btn" onclick="togglePass('newPassword', this)">👁️</button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>🔁 Confirm New Password</label>
+                    <input type="password" id="confirmPassword" placeholder="Re-enter new password">
+                </div>
+
+                <button class="action-btn btn-secondary" onclick="changePassword()">
+                    💾 Save New Password
+                </button>
+
+                <p class="helper-text">
+                    Naya password save hone ke baad aap usi se login kar sakenge.
+                </p>
+            </div>
 
             <div id="messageBox" class="message"></div>
         </div>
     </div>
 
     <div class="footer">
-        <p>© 2026 AI Resume Screening System — Admin Access Only</p>
+        <p>© 2026 AI Resume Screening System — Admin Dashboard</p>
     </div>
 
     <script>
+        function switchTab(mode) {
+            const isLogin = mode === 'login';
+            document.getElementById('loginPanel').style.display = isLogin ? 'block' : 'none';
+            document.getElementById('changePanel').style.display = isLogin ? 'none' : 'block';
+            document.getElementById('tabLoginBtn').className = 'tab-btn ' + (isLogin ? 'active' : '');
+            document.getElementById('tabChangeBtn').className = 'tab-btn ' + (isLogin ? '' : 'active');
+            
+            const msg = document.getElementById('messageBox');
+            msg.style.display = 'none';
+        }
+
+        function togglePass(inputId, btn) {
+            const el = document.getElementById(inputId);
+            if (!el) return;
+            if (el.type === 'password') {
+                el.type = 'text';
+                btn.textContent = '🙈';
+            } else {
+                el.type = 'password';
+                btn.textContent = '👁️';
+            }
+        }
+
         async function login() {
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
             const messageBox = document.getElementById('messageBox');
+
+            if (!username || !password) {
+                messageBox.className = 'message error';
+                messageBox.style.display = 'block';
+                messageBox.innerHTML = '⚠️ Please enter both username and password.';
+                return;
+            }
 
             messageBox.style.display = 'block';
             messageBox.className = 'message';
             messageBox.innerHTML = '⏳ Verifying credentials...';
-            messageBox.style.color = '#94a3b8';
 
             try {
                 const response = await fetch('/admin/login', {
@@ -206,19 +366,80 @@
                 if (data.success) {
                     messageBox.className = 'message success';
                     messageBox.innerHTML = '✅ ' + (data.message || 'Login successful!') + ' Redirecting...';
-                    setTimeout(() => { window.location.href = '/admin/dashboard'; }, 1200);
+                    setTimeout(() => { window.location.href = '/admin/dashboard'; }, 1000);
                 } else {
                     messageBox.className = 'message error';
                     messageBox.innerHTML = '❌ ' + (data.message || 'Invalid credentials');
                 }
             } catch (error) {
                 messageBox.className = 'message error';
-                messageBox.innerHTML = '❌ Login failed. Please try again.';
+                messageBox.innerHTML = '❌ Login failed. Please check network connection.';
+            }
+        }
+
+        async function changePassword() {
+            const current_password = document.getElementById('currPassword').value.trim();
+            const new_password = document.getElementById('newPassword').value.trim();
+            const confirm_password = document.getElementById('confirmPassword').value.trim();
+            const messageBox = document.getElementById('messageBox');
+
+            if (!current_password || !new_password) {
+                messageBox.className = 'message error';
+                messageBox.style.display = 'block';
+                messageBox.innerHTML = '⚠️ Please fill all password fields.';
+                return;
+            }
+
+            if (new_password.length < 4) {
+                messageBox.className = 'message error';
+                messageBox.style.display = 'block';
+                messageBox.innerHTML = '⚠️ New password must be at least 4 characters long.';
+                return;
+            }
+
+            if (new_password !== confirm_password) {
+                messageBox.className = 'message error';
+                messageBox.style.display = 'block';
+                messageBox.innerHTML = '❌ New password and confirmation do not match.';
+                return;
+            }
+
+            messageBox.style.display = 'block';
+            messageBox.className = 'message';
+            messageBox.innerHTML = '⏳ Updating password...';
+
+            try {
+                const response = await fetch('/admin/change-password', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ current_password, new_password })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    messageBox.className = 'message success';
+                    messageBox.innerHTML = '🎉 ' + data.message;
+                    document.getElementById('password').value = new_password;
+                    setTimeout(() => {
+                        switchTab('login');
+                    }, 1500);
+                } else {
+                    messageBox.className = 'message error';
+                    messageBox.innerHTML = '❌ ' + (data.message || 'Failed to update password');
+                }
+            } catch (error) {
+                messageBox.className = 'message error';
+                messageBox.innerHTML = '❌ Request failed. Please try again.';
             }
         }
 
         document.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') login();
+            if (e.key === 'Enter') {
+                const isLogin = document.getElementById('loginPanel').style.display !== 'none';
+                if (isLogin) login();
+                else changePassword();
+            }
         });
     </script>
 </body>
