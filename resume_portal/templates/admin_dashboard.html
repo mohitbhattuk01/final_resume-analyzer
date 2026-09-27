@@ -448,10 +448,10 @@
                     body:JSON.stringify({id, status})
                 })).json();
                 if (res.success) { 
-                    showToast(`Candidate Status updated to: ${status}`); 
-                    loadApplicants(); 
+                    showToast(`🎉 Success: Candidate status updated to "${status}"!`); 
+                    loadDashboard(); 
                 } else {
-                    showToast('Update failed', true);
+                    showToast('⚠️ Status update failed', true);
                 }
             } catch(e) { showToast('Update error: ' + e, true); }
         }
