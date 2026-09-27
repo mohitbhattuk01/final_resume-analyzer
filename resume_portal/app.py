@@ -568,7 +568,7 @@ def send_status_email(applicant, status):
             return False
             
         if norm_status in ["Shortlisted", "Selected"]:
-            subject = f"🎉 Congratulations! Shortlisted for {comp} 2026"
+            subject = f"Application Status Update: Shortlisted for {comp}"
             body = f"""Dear {name},
 
 CONGRATULATIONS! You have been SHORTLISTED / SELECTED for {comp}.
@@ -592,7 +592,7 @@ Best regards,
 {comp} Recruitment Team
 """
         elif norm_status == "Rejected":
-            subject = f"Update regarding {comp} Application"
+            subject = f"Application Status Update: {comp}"
             body = f"""Dear {name},
 
 Thank you for applying to {comp}.
@@ -609,7 +609,7 @@ Best regards,
             return False
         
         msg = MIMEMultipart()
-        msg['From'] = f"AI Recruitment Portal <{SENDER_EMAIL}>"
+        msg['From'] = f"HR Recruitment <{SENDER_EMAIL}>"
         msg['To'] = email
         msg['Subject'] = subject
         msg.attach(MIMEText(body, 'plain'))
