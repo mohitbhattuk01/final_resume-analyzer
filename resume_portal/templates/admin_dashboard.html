@@ -344,6 +344,10 @@
             </div>
 
             <div class="filters">
+                <select class="filter-select" id="sortFilter" onchange="loadApplicants()">
+                    <option value="newest">📅 Newest Applied First</option>
+                    <option value="score">⭐ Highest Score First</option>
+                </select>
                 <select class="filter-select" id="companyFilter" onchange="loadApplicants()">
                     <option value="">🏢 All Companies</option>
                     <option value="Google">Google</option><option value="Microsoft">Microsoft</option><option value="Amazon">Amazon</option>
@@ -408,8 +412,9 @@
         async function loadApplicants() {
             let company = document.getElementById('companyFilter').value;
             let status = document.getElementById('statusFilter').value;
+            let sort = document.getElementById('sortFilter') ? document.getElementById('sortFilter').value : 'newest';
             let min = document.getElementById('scoreFilter').value;
-            let url = '/api/admin/applicants?';
+            let url = `/api/admin/applicants?sort=${sort}&`;
             if (company) url += `company=${company}&`;
             if (status) url += `status=${status}&`;
             if (min && min != '0') url += `min_score=${min}`;

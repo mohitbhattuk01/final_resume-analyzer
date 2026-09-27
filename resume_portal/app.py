@@ -867,8 +867,12 @@ def api_admin_applicants():
     if min_score > 0:
         applicants = [a for a in applicants if a.get('score', 0) >= min_score]
     
-    # Sort by score descending
-    applicants.sort(key=lambda x: x.get('score', 0), reverse=True)
+    sort_by = request.args.get('sort', 'newest')
+    if sort_by == 'score':
+        applicants.sort(key=lambda x: x.get('score', 0), reverse=True)
+    else:
+        # Default: Newest applied date first so fresh applications appear at the top!
+        applicants.sort(key=lambda x: (x.get('applied_date', '') or str(x.get('id', ''))), reverse=True)
     
     return jsonify(applicants)
 
