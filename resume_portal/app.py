@@ -500,6 +500,7 @@ import socket
 import smtplib 
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+import threading
 
 app = Flask(__name__)
 app.static_folder = 'static'
@@ -556,64 +557,73 @@ SENDER_PASSWORD = "nvkn lbrt hxqx umqx"
 
 def send_status_email(applicant, status):
     try:
-        if status == "Shortlisted":
-            subject = f" Congratulations! Shortlisted for {applicant['company']} 2026"
-            body = f"""
-Dear {applicant['name']},
+        norm_status = str(status).strip()
+        comp = applicant.get('company', 'Recruitment Team')
+        name = applicant.get('name', 'Candidate')
+        email = applicant.get('email', '')
+        score = applicant.get('score', 0)
+        
+        if not email or '@' not in email:
+            print(f"⚠️ No valid email for applicant {name}")
+            return False
+            
+        if norm_status in ["Shortlisted", "Selected"]:
+            subject = f"🎉 Congratulations! Shortlisted for {comp} 2026"
+            body = f"""Dear {name},
 
-CONGRATULATIONS! You have been SHORTLISTED for {applicant['company']}.
+CONGRATULATIONS! You have been SHORTLISTED / SELECTED for {comp}.
 
 📊 YOUR SCORE BREAKDOWN:
- 
-🏢 Company: {applicant['company']}
-🎯 Final Score: {applicant['score']}%
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🏢 Company: {comp}
+🎯 Final Score: {score}%
 📈 Skill Score: {applicant.get('skill_score', 0)}%     
 💼 Experience: {applicant.get('exp_years', 0)} years ({applicant.get('exp_score', 0)}%)
 📁 Projects: {applicant.get('projects_count', 0)} ({applicant.get('projects_score', 0)}%)
 🎓 Certifications: {applicant.get('cert_count', 0)} ({applicant.get('cert_score', 0)}%)
 
-✅ Skills Matched: {', '.join(applicant['matched_skills'][:5])}
+✅ Skills Matched: {', '.join(applicant.get('matched_skills', [])[:5])}
 
 📌 NEXT STEPS:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 • Interview details will be sent within 48 hours
 
 Best regards,
-{applicant['company']} Recruitment Team
+{comp} Recruitment Team
 """
-        elif status == "Rejected":
-            subject = f"Update regarding {applicant['company']} Application"
-            body = f"""
-Dear {applicant['name']},
+        elif norm_status == "Rejected":
+            subject = f"Update regarding {comp} Application"
+            body = f"""Dear {name},
 
-Thank you for applying to {applicant['company']}.
+Thank you for applying to {comp}.
 
-📊 YOUR SCORE: {applicant['score']}%
+📊 YOUR SCORE: {score}%
 ❌ Status: Not Selected this time
 
 We encourage you to apply again in future.
 
 Best regards,
-{applicant['company']} Recruitment Team
+{comp} Recruitment Team
 """
         else:
             return False
         
         msg = MIMEMultipart()
         msg['From'] = SENDER_EMAIL
-        msg['To'] = applicant['email']
+        msg['To'] = email
         msg['Subject'] = subject
         msg.attach(MIMEText(body, 'plain'))
         
-        server = smtplib.SMTP('smtp.gmail.com', 587)
+        # Connect with 8-second timeout so it never hangs
+        server = smtplib.SMTP('smtp.gmail.com', 587, timeout=8)
         server.starttls()
         server.login(SENDER_EMAIL, SENDER_PASSWORD)
         server.send_message(msg)
         server.quit()
-        print(f"✅ Email sent to {applicant['email']}")
+        print(f"✅ Email sent successfully to {email}")
         return True
     except Exception as e:
-        print(f" Email Error: {e}")
+        print(f"⚠️ Email dispatch note (safe fallback): {e}")
         return False
 
  
@@ -896,17 +906,31 @@ def api_admin_stats():
 
 @app.route('/api/admin/update_status', methods=['POST'])
 def api_update_status():
-    data = request.json
+    data = request.json or {}
+    app_id = data.get('id')
+    new_status = data.get('status')
+    
+    if not app_id or not new_status:
+        return jsonify({'success': False, 'message': 'Missing applicant id or status'}), 400
+        
+    target_applicant = None
     with open(APPLICANTS_FILE, 'r') as f:
         applicants = json.load(f)
+        
     for app in applicants:
-        if app['id'] == data.get('id'):
-            app['status'] = data.get('status')
-            send_status_email(app, data.get('status'))
+        if app['id'] == app_id:
+            app['status'] = new_status
+            target_applicant = app
             break
+            
     with open(APPLICANTS_FILE, 'w') as f:
         json.dump(applicants, f, indent=2)
-    return jsonify({'success': True})
+        
+    # Send email asynchronously in background thread so HTTP response is instant!
+    if target_applicant:
+        threading.Thread(target=send_status_email, args=(target_applicant, new_status), daemon=True).start()
+        
+    return jsonify({'success': True, 'message': f'Status updated to {new_status}'})
 
 @app.route('/api/admin/delete_applicant', methods=['POST'])
 def delete_applicant():
