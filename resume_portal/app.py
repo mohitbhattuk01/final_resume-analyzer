@@ -562,52 +562,186 @@ def send_status_email(applicant, status):
         name = applicant.get('name', 'Candidate')
         email = applicant.get('email', '')
         score = applicant.get('score', 0)
+        current_date = datetime.now().strftime('%d %B %Y')
+        app_ref = f"APP-{applicant.get('id', datetime.now().strftime('%Y%m%d'))}"
         
         if not email or '@' not in email:
             print(f"⚠️ No valid email for applicant {name}")
             return False
             
+        matched_str = ', '.join(applicant.get('matched_skills', [])[:5]) or 'Technical Alignment Verified'
+        missing_str = ', '.join(applicant.get('missing_skills', [])[:4]) or 'Advanced Domain Competencies'
+
         if norm_status in ["Shortlisted", "Selected"]:
-            subject = f"Resume Screening Result: Shortlisted for {comp}"
-            body = f"""Dear {name},
-
-Great news! Your application has been reviewed and SHORTLISTED for {comp} via our AI Resume Screening Portal.
-
-Candidate: {name}
-Company: {comp}
-Overall Score: {score}%
-Skill Match: {applicant.get('skill_score', 0)}%
-Matched Skills: {', '.join(applicant.get('matched_skills', [])[:5]) or 'Verified'}
-
-Your profile matches the requirements for this role.
-
-Best regards,
-Mohit Bhatt
-AI Resume Screening Portal
-"""
+            subject = f"Official Assessment Letter: Shortlisted for {comp}"
+            status_title = "STATUS: APPLICATION SHORTLISTED & APPROVED"
+            status_bg = "#f0fdf4"
+            status_border = "#10b981"
+            status_text = "#047857"
+            intro_p = f"We are pleased to inform you that following the automated technical screening of your profile, your credentials have met the required benchmark standards for the <strong>{comp}</strong> hiring evaluation."
+            table_row3_label = "Skills Alignment"
+            table_row3_val = matched_str
+            steps_title = "📌 Next Steps in the Recruitment Process"
+            steps_items = f"""<li>Your application dossier has been prioritized for technical review.</li>
+<li>Interview details and platform credentials will be shared within 48 business hours.</li>
+<li>Please ensure your project repositories and portfolio links are kept accessible.</li>"""
+            plain_summary = f"Congratulations! Your profile has been SHORTLISTED for {comp} via our AI Resume Screening Portal."
         elif norm_status == "Rejected":
-            subject = f"Resume Screening Result: {comp}"
-            body = f"""Dear {name},
-
-Thank you for your application for {comp} on our AI Resume Screening Portal.
-
-Overall Score: {score}%
-Status: Not Selected
-
-We encourage you to enhance your technical skills and apply again for upcoming opportunities.
-
-Best regards,
-Mohit Bhatt
-AI Resume Screening Portal
-"""
+            subject = f"Official Assessment Letter: Evaluation for {comp}"
+            status_title = "STATUS: APPLICATION REVIEW COMPLETE — NOT SELECTED"
+            status_bg = "#f8fafc"
+            status_border = "#64748b"
+            status_text = "#475569"
+            intro_p = f"Thank you for participating in the technical evaluation process for the <strong>{comp}</strong> opening through our AI Resume Screening Portal. While we appreciate your interest, your profile was not selected for the next round at this stage."
+            table_row3_label = "Key Focus Areas"
+            table_row3_val = missing_str
+            steps_title = "📌 Recommendations & Future Opportunities"
+            steps_items = f"""<li>We encourage you to further strengthen proficiencies in the identified skill areas.</li>
+<li>You are eligible to re-apply after 30 days with updated project credentials.</li>
+<li>We sincerely wish you the very best in your upcoming professional endeavors.</li>"""
+            plain_summary = f"Thank you for applying to {comp}. Your profile was not selected at this stage."
         else:
             return False
-        
-        msg = MIMEMultipart()
-        msg['From'] = f"Mohit Bhatt - Resume Portal <{SENDER_EMAIL}>"
+
+        html = f"""<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"></head>
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; background-color: #f1f5f9; margin: 0; padding: 24px; color: #1e293b;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td align="center">
+        <table width="600" border="0" cellspacing="0" cellpadding="0" style="max-width: 600px; width: 100%; background: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.06);">
+          
+          <!-- Header Letterhead -->
+          <tr>
+            <td style="background: #0f172a; padding: 28px 32px; border-bottom: 3px solid #3b82f6;">
+              <div style="font-size: 17px; font-weight: 800; letter-spacing: 1px; color: #60a5fa; text-transform: uppercase;">
+                AI RESUME SCREENING &amp; TALENT PORTAL
+              </div>
+              <div style="font-size: 12px; color: #94a3b8; margin-top: 4px;">
+                Candidate Assessment &amp; Skill Verification System
+              </div>
+            </td>
+          </tr>
+
+          <!-- Meta Bar -->
+          <tr>
+            <td style="padding: 16px 32px; background: #f8fafc; border-bottom: 1px solid #e2e8f0; font-size: 12px; color: #64748b;">
+              <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td><strong>Date:</strong> {current_date}</td>
+                  <td align="right"><strong>Ref:</strong> #{app_ref}</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Letter Body -->
+          <tr>
+            <td style="padding: 32px; font-size: 14px; line-height: 1.7; color: #334155;">
+              <div style="font-size: 16px; font-weight: 700; color: #0f172a; margin-bottom: 16px;">
+                Dear {name},
+              </div>
+              
+              <p style="margin: 0 0 16px 0;">
+                {intro_p}
+              </p>
+
+              <!-- Status Box -->
+              <div style="background: {status_bg}; border-left: 4px solid {status_border}; border-radius: 6px; padding: 14px 18px; margin: 20px 0;">
+                <span style="font-size: 13px; font-weight: 700; color: {status_text}; text-transform: uppercase; letter-spacing: 0.5px;">
+                  {status_title}
+                </span>
+              </div>
+
+              <!-- Score Breakdown Table -->
+              <div style="font-weight: 700; color: #0f172a; margin: 22px 0 10px 0; font-size: 14px;">
+                📊 Candidate Assessment Scorecard
+              </div>
+              
+              <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border-collapse: collapse; font-size: 13px; margin-bottom: 20px;">
+                <tr style="background: #f8fafc;">
+                  <td style="padding: 10px 14px; border: 1px solid #e2e8f0; font-weight: 600; color: #475569;">Target Organization</td>
+                  <td style="padding: 10px 14px; border: 1px solid #e2e8f0; font-weight: 700; color: #0f172a;">{comp}</td>
+                </tr>
+                <tr>
+                  <td style="padding: 10px 14px; border: 1px solid #e2e8f0; font-weight: 600; color: #475569;">Cumulative Match Score</td>
+                  <td style="padding: 10px 14px; border: 1px solid #e2e8f0;">
+                    <span style="background: #10b981; color: #ffffff; padding: 3px 10px; border-radius: 6px; font-weight: 700; font-size: 12px;">{score}%</span>
+                  </td>
+                </tr>
+                <tr style="background: #f8fafc;">
+                  <td style="padding: 10px 14px; border: 1px solid #e2e8f0; font-weight: 600; color: #475569;">{table_row3_label}</td>
+                  <td style="padding: 10px 14px; border: 1px solid #e2e8f0; color: #1e293b;">{table_row3_val}</td>
+                </tr>
+                <tr>
+                  <td style="padding: 10px 14px; border: 1px solid #e2e8f0; font-weight: 600; color: #475569;">Projects &amp; Experience</td>
+                  <td style="padding: 10px 14px; border: 1px solid #e2e8f0; color: #1e293b;">{applicant.get('projects_count', 0)} Verified Projects | {applicant.get('exp_years', 0)} Yrs Experience</td>
+                </tr>
+              </table>
+
+              <!-- Next Steps Box -->
+              <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px 20px; margin: 20px 0;">
+                <div style="font-size: 12px; font-weight: 700; color: #0f172a; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;">
+                  {steps_title}
+                </div>
+                <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: #475569; line-height: 1.6;">
+                  {steps_items}
+                </ul>
+              </div>
+
+              <!-- Formal Signature -->
+              <div style="margin-top: 32px; padding-top: 20px; border-top: 1px solid #e2e8f0;">
+                <div style="font-size: 14px; color: #64748b;">Sincerely,</div>
+                <div style="font-size: 16px; font-weight: 800; color: #0f172a; margin-top: 6px;">Mohit Bhatt</div>
+                <div style="font-size: 13px; color: #475569; font-weight: 600;">Technical Evaluations Lead | AI Resume Screening Portal</div>
+                <div style="font-size: 12px; color: #94a3b8; margin-top: 2px;">Official Portal Admin | pro.it2026dev@gmail.com</div>
+              </div>
+
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="background: #f8fafc; padding: 18px 32px; font-size: 11px; color: #94a3b8; text-align: center; border-top: 1px solid #e2e8f0;">
+              This is an official candidate evaluation notification generated by the AI Resume Screening System 2026.<br>
+              &copy; 2026 Mohit Bhatt Portfolio Systems. All rights reserved.
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>"""
+
+        plain = f"""Dear {name},
+
+OFFICIAL CANDIDATE ASSESSMENT LETTER
+Application Ref: #{app_ref}
+Date: {current_date}
+
+{plain_summary}
+
+ASSESSMENT BREAKDOWN:
+• Target Company: {comp}
+• Overall Match Score: {score}%
+• Matched Skills: {matched_str}
+• Experience: {applicant.get('exp_years', 0)} Years
+
+Sincerely,
+Mohit Bhatt
+Technical Evaluations Lead | AI Resume Screening Portal
+pro.it2026dev@gmail.com
+"""
+
+        msg = MIMEMultipart('alternative')
+        msg['From'] = f"Mohit Bhatt - AI Portal <{SENDER_EMAIL}>"
         msg['To'] = email
         msg['Subject'] = subject
-        msg.attach(MIMEText(body, 'plain'))
+        msg.attach(MIMEText(plain, 'plain'))
+        msg.attach(MIMEText(html, 'html'))
         
         # Connect with 8-second timeout so it never hangs
         server = smtplib.SMTP('smtp.gmail.com', 587, timeout=8)
@@ -615,7 +749,7 @@ AI Resume Screening Portal
         server.login(SENDER_EMAIL, SENDER_PASSWORD)
         server.send_message(msg)
         server.quit()
-        print(f"✅ Email sent successfully to {email}")
+        print(f"✅ Formal letter email sent successfully to {email}")
         return True
     except Exception as e:
         print(f"⚠️ Email dispatch note (safe fallback): {e}")
