@@ -523,10 +523,10 @@ if not os.path.exists(ADMIN_FILE):
     with open(ADMIN_FILE, 'w') as f:
         json.dump({
             "username": "admin",
-            "password": "admin@121",
+            "password": "Mohit@Admin#2026",
             "email": "admin@resumeai.com"
         }, f)
-    print("✅ Created admin.json with default password admin@121")
+    print("✅ Created admin.json with secure password")
 
 if not os.path.exists(COMPANIES_FILE):
     with open(COMPANIES_FILE, 'w') as f:
@@ -997,10 +997,10 @@ def admin():
 @app.route('/admin/login', methods=['POST'])
 def admin_login():
     data = request.json or {}
-    entered_user = str(data.get('username', '')).strip()
+    entered_user = str(data.get('username', '')).strip().lower()
     entered_pass = str(data.get('password', '')).strip()
     
-    admin_data = {"username": "admin", "password": "admin@121"}
+    admin_data = {"username": "admin", "password": "Mohit@Admin#2026"}
     if os.path.exists(ADMIN_FILE):
         try:
             with open(ADMIN_FILE, 'r') as f:
@@ -1008,13 +1008,13 @@ def admin_login():
         except Exception:
             pass
             
-    saved_user = admin_data.get('username', 'admin')
-    saved_pass = admin_data.get('password', 'admin@121')
+    saved_user = str(admin_data.get('username', 'admin')).strip().lower()
+    saved_pass = str(admin_data.get('password', 'Mohit@Admin#2026')).strip()
     
-    # Valid passwords: saved password, admin@121, or backup admin123
-    valid_passwords = [saved_pass, 'admin@121', 'admin123', 'mohit@121', 'admin']
+    # Valid usernames can be 'admin' or 'mohit'
+    valid_users = [saved_user, 'admin', 'mohit']
     
-    if entered_user.lower() == saved_user.lower() and (entered_pass in valid_passwords):
+    if (entered_user in valid_users) and (entered_pass == saved_pass):
         session['admin_logged_in'] = True
         return jsonify({'success': True, 'message': 'Login successful! Welcome Admin.'})
     return jsonify({'success': False, 'message': 'Invalid username or password. Please try again.'})
@@ -1025,10 +1025,10 @@ def admin_change_password():
     current_pass = str(data.get('current_password', '')).strip()
     new_pass = str(data.get('new_password', '')).strip()
     
-    if not new_pass or len(new_pass) < 4:
-        return jsonify({'success': False, 'message': 'New password must be at least 4 characters long.'})
+    if not new_pass or len(new_pass) < 6:
+        return jsonify({'success': False, 'message': 'New password must be at least 6 characters long.'})
     
-    admin_data = {"username": "admin", "password": "admin@121", "email": "admin@resumeai.com"}
+    admin_data = {"username": "admin", "password": "Mohit@Admin#2026", "email": "admin@resumeai.com"}
     if os.path.exists(ADMIN_FILE):
         try:
             with open(ADMIN_FILE, 'r') as f:
@@ -1036,11 +1036,10 @@ def admin_change_password():
         except Exception:
             pass
             
-    saved_pass = admin_data.get('password', 'admin@121')
-    master_keys = [saved_pass, 'admin@121', 'admin123', 'mohit@121', '2026', 'admin']
+    saved_pass = str(admin_data.get('password', 'Mohit@Admin#2026')).strip()
     
-    if current_pass not in master_keys and current_pass != saved_pass:
-        return jsonify({'success': False, 'message': 'Incorrect current password! You can use "admin@121" as master key.'})
+    if current_pass != saved_pass:
+        return jsonify({'success': False, 'message': 'Incorrect current password!'})
     
     admin_data['password'] = new_pass
     try:
