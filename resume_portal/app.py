@@ -553,7 +553,7 @@ COMPANY_DATA = [
 
 # ========== EMAIL FUNCTION ==========
 SENDER_EMAIL = os.environ.get("SENDER_EMAIL", "pro.it2026dev@gmail.com")
-SENDER_PASSWORD = os.environ.get("SENDER_PASSWORD", "fghi ttnw qcxo jovq")
+SENDER_PASSWORD = os.environ.get("SENDER_PASSWORD", "mwpl qruv doqd dlaf")
 
 def send_status_email(applicant, status):
     try:
