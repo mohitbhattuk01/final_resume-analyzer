@@ -359,15 +359,15 @@
     
     <!-- HERO SECTION -->
     <div class="hero">
-        <h2>India's Top Tech Companies</h2>
-        <p>🚀 <span class="highlight">2026 Fresher Hiring</span> | AI-Powered Resume Matching | 90% Accuracy</p>
-        <p style="font-size: 20px; margin-top: 20px;">🏆 Google · Microsoft · Amazon · TCS · Infosys · Thoughtworks & more</p>
+        <h2>India's Leading Tech & IT Companies</h2>
+        <p>🚀 <span class="highlight">2026 Batch Hiring</span> | AI-Powered Resume Matching | 90% Accuracy</p>
+        <p style="font-size: 18px; margin-top: 20px;">🏆 IT Support · Web Dev · QA Testing · Data Analytics · Cloud MNCs</p>
     </div>
     
     <!-- COMPANIES SECTION -->
     <div class="container">
         <h1 class="section-title">
-            🔥 TOP 10 COMPANIES 2026 <span>HIRING NOW</span>
+            🔥 VERIFIED COMPANIES 2026 <span>HIRING NOW</span>
         </h1>
         
         <div class="company-grid" id="companyGrid">
@@ -823,24 +823,82 @@
     
     <!-- FOOTER -->
     <div class="footer">
+        <p>© 2026 AI Resume Screening System | Multi-Domain IT & Tech Hiring</p>
         <p style="margin-top: 8px;">Designed & Developed by <strong>Mohit Bhatt</strong></p>
-        <p style="margin-top: 15px; color: #666;">Google · Microsoft · Amazon · TCS · Infosys · Thoughtworks · Meta · Apple · Salesforce · Adobe</p>
+        <p style="margin-top: 15px; color: #666;">Wipro · HCLTech · Concentrix · TCS · Infosys · Zomato · Swiggy · Cognizant · Fractal · Google · Microsoft · Amazon</p>
     </div>
     
     <script>
-        // Company data for apply buttons
-        const companies = [
-            'Google', 'Microsoft', 'Amazon', 'TCS', 'Infosys', 
-            'Thoughtworks', 'Meta', 'Apple', 'Salesforce', 'Adobe'
-        ];
-        
-        // Confirm before apply
-        document.querySelectorAll('.apply-btn').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                const company = this.textContent.split('@')[1]?.split('2026')[0]?.trim() || 'Company';
-                console.log(`Applying to: ${company}`);
-            });
-        });
+        async function loadCompanies() {
+            try {
+                let res = await fetch('/api/companies');
+                let companies = await res.json();
+                const grid = document.getElementById('companyGrid');
+                if (!grid || !Array.isArray(companies) || companies.length === 0) return;
+                
+                const colors = [
+                    'linear-gradient(135deg, #0284c7, #38bdf8)',
+                    'linear-gradient(135deg, #059669, #34d399)',
+                    'linear-gradient(135deg, #d97706, #fbbf24)',
+                    'linear-gradient(135deg, #2563eb, #60a5fa)',
+                    'linear-gradient(135deg, #7c3aed, #a78bfa)',
+                    'linear-gradient(135deg, #e11d48, #fb7185)',
+                    'linear-gradient(135deg, #ea580c, #fb923c)',
+                    'linear-gradient(135deg, #4f46e5, #818cf8)',
+                    'linear-gradient(135deg, #0d9488, #2dd4bf)',
+                    'linear-gradient(135deg, #4285F4, #34A853)',
+                    'linear-gradient(135deg, #00a4ef, #7fba00)',
+                    'linear-gradient(135deg, #ff9900, #146eb4)'
+                ];
+
+                let html = '';
+                companies.forEach((c, idx) => {
+                    let color = colors[idx % colors.length];
+                    let initials = c.name.substring(0, 2).toUpperCase();
+                    let skillsHtml = (c.skills || []).map(s => `<span class="skill-tag">${s}</span>`).join('');
+                    html += `
+                    <div class="company-card">
+                        <div class="card-header">
+                            <div class="company-logo" style="background: ${color};">
+                                ${initials}
+                            </div>
+                            <div class="company-info">
+                                <div class="company-name">
+                                    ${c.name}
+                                    <span class="batch-badge">2026</span>
+                                </div>
+                                <div class="industry">
+                                    <span>📍 ${c.category || 'Tech'}</span>
+                                </div>
+                                <div class="salary-tag">
+                                    ${c.salary}
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="role-tag">
+                            🎯 Hiring: ${c.role || c.name + ' Technical Team'}
+                        </div>
+                        
+                        <div class="skills-section">
+                            <div class="skills-title">⚡ Required Skills 2026:</div>
+                            <div class="skills">
+                                ${skillsHtml}
+                            </div>
+                        </div>
+                        
+                        <button class="apply-btn" onclick="location.href='/apply?company=${encodeURIComponent(c.name)}'">
+                            📄 APPLY NOW @ ${c.name.toUpperCase()} 2026
+                        </button>
+                    </div>`;
+                });
+                grid.innerHTML = html;
+            } catch(e) {
+                console.error("Error dynamically loading companies:", e);
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', loadCompanies);
     </script>
 </body>
 </html>

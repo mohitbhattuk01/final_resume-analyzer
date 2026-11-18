@@ -350,9 +350,18 @@
                 </select>
                 <select class="filter-select" id="companyFilter" onchange="loadApplicants()">
                     <option value="">🏢 All Companies</option>
-                    <option value="Google">Google</option><option value="Microsoft">Microsoft</option><option value="Amazon">Amazon</option>
-                    <option value="TCS">TCS</option><option value="Infosys">Infosys</option><option value="Thoughtworks">Thoughtworks</option>
-                    <option value="Meta">Meta</option><option value="Apple">Apple</option><option value="Salesforce">Salesforce</option><option value="Adobe">Adobe</option>
+                    <option value="Wipro">Wipro (IT Support)</option>
+                    <option value="HCLTech">HCLTech (Desktop Support)</option>
+                    <option value="Concentrix">Concentrix (Tech Support)</option>
+                    <option value="TCS">TCS (Systems Eng)</option>
+                    <option value="Infosys">Infosys (Web & Systems)</option>
+                    <option value="Zomato">Zomato (Frontend Dev)</option>
+                    <option value="Swiggy">Swiggy (Fullstack Dev)</option>
+                    <option value="Cognizant">Cognizant (QA & Testing)</option>
+                    <option value="Fractal Analytics">Fractal Analytics (Data Analyst)</option>
+                    <option value="Google">Google</option>
+                    <option value="Microsoft">Microsoft</option>
+                    <option value="Amazon">Amazon</option>
                 </select>
                 <select class="filter-select" id="statusFilter" onchange="loadApplicants()">
                     <option value="">📌 All Status</option>
@@ -391,9 +400,14 @@
                 document.getElementById('pendingApps').innerText = stats.pending_review || 0;
                 document.getElementById('avgScore').innerText = (stats.avg_score || 0) + '%';
 
-                let companies = ['Google','Microsoft','Amazon','TCS','Infosys','Thoughtworks','Meta','Apple','Salesforce','Adobe'];
+                let compRes = await fetch('/api/companies');
+                let companiesList = await compRes.json();
+                let companyNames = Array.isArray(companiesList) && companiesList.length > 0 
+                    ? companiesList.map(c => c.name) 
+                    : ['Wipro','HCLTech','Concentrix','TCS','Infosys','Zomato','Swiggy','Cognizant','Fractal Analytics','Google','Microsoft','Amazon'];
+                
                 let html = '';
-                companies.forEach(c => {
+                companyNames.forEach(c => {
                     let cs = stats.company_wise?.[c] || { total:0, avg_score:0, top_score:0 };
                     html += `<div class="company-stat-card">
                         <h4>${c}</h4>
@@ -502,7 +516,10 @@
 
         async function exportAllCompanies() {
             if (!confirm('Export ALL companies?')) return;
-            ['Google','Microsoft','Amazon','TCS','Infosys','Thoughtworks','Meta','Apple','Salesforce','Adobe'].forEach(c => window.open(`/api/admin/export_csv/${c}`));
+            let compRes = await fetch('/api/companies');
+            let list = await compRes.json();
+            let names = Array.isArray(list) ? list.map(c => c.name) : ['Wipro','HCLTech','Concentrix','TCS','Infosys','Zomato','Swiggy','Cognizant','Fractal Analytics','Google','Microsoft','Amazon'];
+            names.forEach(c => window.open(`/api/admin/export_csv/${c}`));
             showToast('Export started');
         }
 

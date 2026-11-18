@@ -539,16 +539,111 @@ if not os.path.exists(APPLICANTS_FILE):
 
 # ========== COMPANY DATABASE ==========
 COMPANY_DATA = [
-    {"id": 1, "name": "Google", "skills": ["Python", "C++", "Java", "TensorFlow", "PyTorch", "Kubernetes", "System Design", "DSA"], "salary": "₹30-80 LPA"},
-    {"id": 2, "name": "Microsoft", "skills": ["C#", "Python", "Azure", "SQL", "Power BI", ".NET Core", "System Design", "DSA"], "salary": "₹30-80 LPA"},
-    {"id": 3, "name": "Amazon", "skills": ["Java", "C++", "Python", "AWS", "Distributed Systems", "DSA", "System Design"], "salary": "₹30-70 LPA"},
-    {"id": 4, "name": "TCS", "skills": ["Java", "Python", "SQL", "Spring Boot", "AWS", "DSA", "DBMS"], "salary": "₹4-9 LPA"},
-    {"id": 5, "name": "Infosys", "skills": ["Python", "Java", "Spring", "AWS", "Azure", "SQL", "DSA"], "salary": "₹6.25-21 LPA"},
-    {"id": 6, "name": "Thoughtworks", "skills": ["C#", "Java", "Python", "TDD", "CI/CD", "Docker", "Microservices"], "salary": "₹12-25 LPA"},
-    {"id": 7, "name": "Meta", "skills": ["Python", "C++", "React", "PyTorch", "System Design", "DSA"], "salary": "₹35-85 LPA"},
-    {"id": 8, "name": "Apple", "skills": ["Swift", "C++", "Python", "iOS", "macOS", "System Design", "DSA"], "salary": "₹35-75 LPA"},
-    {"id": 9, "name": "Salesforce", "skills": ["Apex", "Java", "JavaScript", "SQL", "Cloud Computing", "Lightning", "DSA"], "salary": "₹20-45 LPA"},
-    {"id": 10, "name": "Adobe", "skills": ["JavaScript", "C++", "Python", "React", "Node.js", "Cloud", "DSA"], "salary": "₹25-50 LPA"}
+    # --- IT Support & Infrastructure ---
+    {
+        "id": 1,
+        "name": "Wipro",
+        "role": "IT Support Engineer",
+        "category": "IT Support",
+        "skills": ["Networking", "Hardware", "Troubleshooting", "Windows", "Active Directory", "DNS", "Helpdesk"],
+        "salary": "₹3.5-6.5 LPA"
+    },
+    {
+        "id": 2,
+        "name": "HCLTech",
+        "role": "Desktop Support Specialist",
+        "category": "IT Support",
+        "skills": ["Hardware", "Networking", "Troubleshooting", "LAN", "WAN", "Linux", "Windows"],
+        "salary": "₹3.2-5.5 LPA"
+    },
+    {
+        "id": 3,
+        "name": "Concentrix",
+        "role": "Technical Support Associate",
+        "category": "IT Support",
+        "skills": ["Helpdesk", "IT Support", "Troubleshooting", "Networking", "Excel", "Hardware"],
+        "salary": "₹3-5 LPA"
+    },
+
+    # --- Software & Web Development ---
+    {
+        "id": 4,
+        "name": "TCS",
+        "role": "Systems Engineer",
+        "category": "Software & Web",
+        "skills": ["Java", "Python", "SQL", "HTML", "CSS", "DBMS", "Git"],
+        "salary": "₹4-9 LPA"
+    },
+    {
+        "id": 5,
+        "name": "Infosys",
+        "role": "Web & Systems Associate",
+        "category": "Software & Web",
+        "skills": ["Python", "JavaScript", "SQL", "HTML", "CSS", "React", "Git"],
+        "salary": "₹4.5-9.5 LPA"
+    },
+    {
+        "id": 6,
+        "name": "Zomato",
+        "role": "Frontend Developer",
+        "category": "Software & Web",
+        "skills": ["JavaScript", "React", "HTML", "CSS", "Git", "REST API", "Bootstrap"],
+        "salary": "₹10-22 LPA"
+    },
+    {
+        "id": 7,
+        "name": "Swiggy",
+        "role": "Fullstack Python / Node Developer",
+        "category": "Software & Web",
+        "skills": ["Python", "Flask", "Node", "React", "SQL", "MongoDB", "Git"],
+        "salary": "₹12-25 LPA"
+    },
+
+    # --- QA & Software Testing ---
+    {
+        "id": 8,
+        "name": "Cognizant",
+        "role": "QA / Software Tester",
+        "category": "Testing & QA",
+        "skills": ["Manual Testing", "Selenium", "SQL", "Jira", "Postman", "Test Cases", "Python"],
+        "salary": "₹4-8.5 LPA"
+    },
+
+    # --- Data & Business Analytics ---
+    {
+        "id": 9,
+        "name": "Fractal Analytics",
+        "role": "Junior Data Analyst",
+        "category": "Data & Analytics",
+        "skills": ["Python", "SQL", "Excel", "Power BI", "Data Analysis", "Tableau", "Pandas"],
+        "salary": "₹6-14 LPA"
+    },
+
+    # --- Cloud & Tech Giants ---
+    {
+        "id": 10,
+        "name": "Google",
+        "role": "Software Engineer",
+        "category": "Cloud & AI",
+        "skills": ["Python", "C++", "Java", "Kubernetes", "DSA", "System Design", "Cloud"],
+        "salary": "₹30-80 LPA"
+    },
+    {
+        "id": 11,
+        "name": "Microsoft",
+        "role": "Software Engineer",
+        "category": "Cloud & AI",
+        "skills": ["C#", "Python", "Azure", "SQL", "Power BI", "DSA", "System Design"],
+        "salary": "₹30-80 LPA"
+    },
+    {
+        "id": 12,
+        "name": "Amazon",
+        "role": "SDE - Software Development Engineer",
+        "category": "Cloud & AI",
+        "skills": ["Java", "C++", "Python", "AWS", "DSA", "System Design", "Distributed Systems"],
+        "salary": "₹30-70 LPA"
+    }
 ]
 
 # ========== EMAIL FUNCTION ==========
@@ -896,10 +991,28 @@ def extract_text_from_pdf(pdf_path):
         return ""
 
 def extract_skills_from_text(text):
-    skills_list = ['python', 'java', 'c++', 'sql', 'aws', 'docker', 'kubernetes', 'tensorflow', 'pytorch', 'react', 'node', 'django', 'flask', 'spring', 'javascript', 'html', 'css', 'git', 'linux', 'mongodb', 'postgresql', 'azure', 'gcp', 'devops', 'cicd', 'jenkins']
+    text_lower = text.lower() if text else ""
+    skills_list = [
+        # Programming & Web Development
+        'python', 'java', 'c++', 'c#', 'c', 'javascript', 'typescript', 'php', 'sql', 'mysql',
+        'postgresql', 'mongodb', 'html', 'css', 'react', 'node', 'django', 'flask', 'spring',
+        'bootstrap', 'tailwind', 'express', 'rest api', 'graphql', 'dbms',
+        # IT Support & Infrastructure / Networking
+        'networking', 'hardware', 'troubleshooting', 'windows server', 'windows', 'active directory',
+        'dhcp', 'dns', 'helpdesk', 'it support', 'lan', 'wan', 'tcp/ip', 'remote desktop',
+        'ticketing', 'technical support', 'desktop support', 'router', 'switch',
+        # Cloud & DevOps
+        'aws', 'azure', 'gcp', 'cloud', 'docker', 'kubernetes', 'linux', 'git', 'github',
+        'devops', 'cicd', 'jenkins', 'system design', 'distributed systems', 'dsa',
+        # Data & Analytics
+        'excel', 'power bi', 'tableau', 'pandas', 'numpy', 'data analysis', 'statistics',
+        'tensorflow', 'pytorch', 'machine learning',
+        # QA & Testing
+        'manual testing', 'automation testing', 'selenium', 'postman', 'jira', 'test cases', 'junit', 'pytest', 'bug tracking'
+    ]
     found = []
     for skill in skills_list:
-        if skill in text:
+        if skill in text_lower:
             found.append(skill)
     return list(set(found))
 

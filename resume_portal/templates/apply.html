@@ -216,19 +216,26 @@
 </div>
             
             <div class="form-group">
-                <label>🏢 Select Company</label>
+                <label>🏢 Select Company & Role</label>
                 <select class="filter-select" id="company" required>
-                    <option value="">🏢 Select Company</option>
-                    <option value="Google">Google</option>
-                    <option value="Microsoft">Microsoft</option>
-                    <option value="Amazon">Amazon</option>
-                    <option value="TCS">TCS</option>
-                    <option value="Infosys">Infosys</option>
-                    <option value="Thoughtworks">Thoughtworks</option>
-                    <option value="Meta">Meta</option>
-                    <option value="Apple">Apple</option>
-                    <option value="Salesforce">Salesforce</option>
-                    <option value="Adobe">Adobe</option>
+                    <option value="">🏢 Select Company & Role</option>
+                    <!-- IT Support & Infrastructure -->
+                    <option value="Wipro">Wipro (IT Support Engineer)</option>
+                    <option value="HCLTech">HCLTech (Desktop Support Specialist)</option>
+                    <option value="Concentrix">Concentrix (Technical Support Associate)</option>
+                    <!-- Software & Web Development -->
+                    <option value="TCS">TCS (Systems Engineer)</option>
+                    <option value="Infosys">Infosys (Web & Systems Associate)</option>
+                    <option value="Zomato">Zomato (Frontend Developer)</option>
+                    <option value="Swiggy">Swiggy (Fullstack Python / Node Dev)</option>
+                    <!-- QA & Testing -->
+                    <option value="Cognizant">Cognizant (QA / Software Tester)</option>
+                    <!-- Data & Analytics -->
+                    <option value="Fractal Analytics">Fractal Analytics (Junior Data Analyst)</option>
+                    <!-- Cloud & Tech Giants -->
+                    <option value="Google">Google (Software Engineer)</option>
+                    <option value="Microsoft">Microsoft (Software Engineer)</option>
+                    <option value="Amazon">Amazon (SDE)</option>
                 </select>
             </div>
             
@@ -256,10 +263,28 @@
         // Get company from URL
         const urlParams = new URLSearchParams(window.location.search);
         const company = urlParams.get('company');
-        if (company) {
-            const select = document.getElementById('company');
+        const select = document.getElementById('company');
+        if (company && select) {
             select.value = company;
         }
+
+        // Dynamically sync with backend COMPANY_DATA
+        fetch('/api/companies')
+            .then(res => res.json())
+            .then(data => {
+                if (Array.isArray(data) && data.length > 0 && select) {
+                    const currentVal = company || select.value;
+                    select.innerHTML = '<option value="">🏢 Select Company & Role</option>';
+                    data.forEach(c => {
+                        const opt = document.createElement('option');
+                        opt.value = c.name;
+                        opt.textContent = `${c.name} (${c.role || c.category || 'Hiring'}) - ${c.salary}`;
+                        select.appendChild(opt);
+                    });
+                    if (currentVal) select.value = currentVal;
+                }
+            })
+            .catch(() => {});
         
         // File upload display
         document.getElementById('resume').addEventListener('change', function(e) {
